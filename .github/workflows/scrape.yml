@@ -1,0 +1,37 @@
+name: Scrape Discord Channel
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: cd scraper && npm ci
+
+      - name: Run scraper
+        run: node scraper/scrape.mjs
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_GUILD_ID: '1446157997155025082'
+          DISCORD_CHANNEL_ID: '1446168712573878324'
+
+      - name: Commit updated tracks
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add tracks.json scraper/state.json
+          git diff --cached --quiet || git commit -m "Update tracks $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push

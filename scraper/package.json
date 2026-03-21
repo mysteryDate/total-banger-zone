@@ -1,0 +1,12 @@
+{
+  "name": "total-banger-zone-scraper",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "scrape": "node scrape.mjs"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  }
+}
