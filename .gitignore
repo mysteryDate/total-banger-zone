@@ -1,3 +1,5 @@
 node_modules/
 .env
 scraper/state.json
+CLAUDE.md
+.claude/
