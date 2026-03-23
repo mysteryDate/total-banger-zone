@@ -374,55 +374,6 @@
     font-family: 'JetBrains Mono', monospace;
   }
 
-  /* Add link area */
-  .add-area {
-    padding: 14px;
-    border-top: 1px solid var(--border);
-  }
-
-  .add-input-row {
-    display: flex;
-    gap: 8px;
-  }
-
-  .add-input {
-    flex: 1;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--text);
-    font-family: 'Outfit', sans-serif;
-    font-size: 12px;
-    padding: 8px 12px;
-    outline: none;
-    transition: border-color 0.15s;
-  }
-
-  .add-input::placeholder { color: var(--muted); }
-  .add-input:focus { border-color: var(--accent); }
-
-  .add-btn {
-    background: var(--accent);
-    border: none;
-    color: white;
-    padding: 8px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-family: 'Outfit', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    transition: background 0.15s;
-  }
-
-  .add-btn:hover { background: var(--accent2); color: #000; }
-
-  .add-hint {
-    font-size: 10px;
-    color: var(--muted);
-    margin-top: 6px;
-    font-family: 'JetBrains Mono', monospace;
-  }
-
   /* Playing animation bars */
   .playing-bars {
     display: flex;
@@ -517,13 +468,6 @@
       </div>
     </div>
 
-    <div class="add-area">
-      <div class="add-input-row">
-        <input class="add-input" id="addInput" type="text" placeholder="Paste YouTube or Spotify link…" />
-        <button class="add-btn" onclick="addLink()">Add</button>
-      </div>
-      <div class="add-hint">youtube.com · youtu.be · open.spotify.com</div>
-    </div>
   </div>
 </div>
 
@@ -548,53 +492,6 @@ async function loadTracks() {
       'No tracks yet — post some links in #music-links!';
   }
 }
-
-// ── URL parsing for the "Add Link" feature (client-side only) ──
-function getYouTubeId(url) {
-  const patterns = [
-    /(?:(?:youtube\.com|music\.youtube\.com)\/watch\?[^\s]*v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
-    /youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/
-  ];
-  for (const p of patterns) {
-    const m = url.match(p);
-    if (m) return m[1];
-  }
-  return null;
-}
-
-function getSpotifyId(url) {
-  const m = url.match(/open\.spotify\.com\/track\/([a-zA-Z0-9]+)/);
-  return m ? m[1] : null;
-}
-
-function parseLink(url) {
-  const ytId = getYouTubeId(url);
-  if (ytId) return { type: 'youtube', id: ytId, title: 'YouTube Track', user: 'you', postedAt: new Date().toISOString() };
-  const spId = getSpotifyId(url);
-  if (spId) return { type: 'spotify', id: spId, title: 'Spotify Track', user: 'you', postedAt: new Date().toISOString() };
-  return null;
-}
-
-function addLink() {
-  const input = document.getElementById('addInput');
-  const url = input.value.trim();
-  if (!url) return;
-  const track = parseLink(url);
-  if (!track) {
-    input.style.borderColor = 'var(--youtube)';
-    setTimeout(() => input.style.borderColor = '', 800);
-    return;
-  }
-  queue.unshift(track); // most recent first
-  input.value = '';
-  // Adjust currentIndex since we prepended
-  if (currentIndex >= 0) currentIndex++;
-  renderQueue();
-}
-
-document.getElementById('addInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') addLink();
-});
 
 // ── Format a date string for display ──
 function formatDate(isoString) {

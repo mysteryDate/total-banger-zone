@@ -32,6 +32,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add tracks.json scraper/state.json
+          git add tracks.json
+          git add scraper/state.json || true
           git diff --cached --quiet || git commit -m "Update tracks $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push
