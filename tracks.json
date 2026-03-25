@@ -1,5 +1,41 @@
 [
   {
+    "type": "spotify",
+    "id": "4242hiYk7PAArDAd6XSWbZ",
+    "subtype": "album",
+    "title": "Dancing For Mental Health",
+    "artist": null,
+    "thumbnailUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02fb4ceb2474766500b37586d1",
+    "user": "profiled! by the yeast police",
+    "postedAt": "2026-03-25T14:49:31.292000+00:00",
+    "messageId": "1486376492249382943",
+    "originalUrl": "https://open.spotify.com/album/4242hiYk7PAArDAd6XSWbZ?si=5VonDkTjRs6JkNy-2Xr4-A"
+  },
+  {
+    "type": "spotify",
+    "id": "05hetyzbR8Vg3rjYUqsLW5",
+    "subtype": "album",
+    "title": "Soothing Sounds for Baby: Vol. 1",
+    "artist": null,
+    "thumbnailUrl": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e023bd4f1bc06ed7efb89c2fa9b",
+    "user": "profiled! by the yeast police",
+    "postedAt": "2026-03-25T14:41:50.642000+00:00",
+    "messageId": "1486374560143118437",
+    "originalUrl": "https://open.spotify.com/album/05hetyzbR8Vg3rjYUqsLW5?si=MYWa_lOXRC--RQZdIt-TNg"
+  },
+  {
+    "type": "spotify",
+    "id": "0aym2LBJBk9DAYuHHutrIl",
+    "subtype": "track",
+    "title": "Hey Jude - Remastered 2015",
+    "artist": null,
+    "thumbnailUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02582d56ce20fe0146ffa0e5cf",
+    "user": "her dark materials",
+    "postedAt": "2026-03-25T14:38:43.973000+00:00",
+    "messageId": "1486373777196453988",
+    "originalUrl": "https://open.spotify.com/track/0aym2LBJBk9DAYuHHutrIl?si=t7Twd61HTXC82Os4h-p71Q"
+  },
+  {
     "type": "youtube",
     "id": "ikZgBhSMSUM",
     "subtype": null,
