@@ -294,6 +294,41 @@
   }
 
   .hidden { display: none !important; }
+
+  /* Mobile layout */
+  @media (max-width: 768px) {
+    html, body { overflow: auto; }
+
+    .app {
+      grid-template-columns: 1fr;
+      grid-template-rows: 56px auto 1fr;
+      height: auto;
+      min-height: 100vh;
+    }
+
+    header { padding: 0 16px; }
+
+    .logo { font-size: 18px; }
+
+    .sidebar {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      order: 1;
+      max-height: 50vh;
+    }
+
+    .player-area {
+      order: 0;
+      padding: 14px;
+      gap: 14px;
+    }
+
+    .embed-container { min-height: 220px; }
+
+    .controls { gap: 8px; }
+
+    .btn { width: 36px; height: 36px; font-size: 14px; }
+  }
 </style>
 </head>
 <body>
@@ -328,7 +363,7 @@
     </div>
 
     <div class="controls">
-      <button class="btn" id="prevBtn" title="Previous" onclick="prevTrack()">&#9664;</button>
+      <button class="btn" id="prevBtn" title="Previous" onclick="prevTrack()">&#9664;&#9664;</button>
       <div class="track-info">
         <div class="track-title" id="trackTitle">No track selected</div>
         <div class="track-meta">
