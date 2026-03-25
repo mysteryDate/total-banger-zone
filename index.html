@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Total Banger Zone</title>
+<link rel="icon" type="image/webp" href="pout.webp">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -24,6 +25,18 @@
     font-family: sans-serif;
     overflow: hidden;
   }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: url('pout.webp') center / cover no-repeat;
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .app { position: relative; z-index: 1; }
 
   .app {
     display: grid;
@@ -377,11 +390,21 @@
 </div>
 
 <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+<script src="https://www.youtube.com/iframe_api" onerror="ytReady=false"></script>
 <script>
 let queue = [];
 let currentIndex = -1;
 let spotifyController = null;
 let spotifyIFrameAPI = null;
+let ytPlayer = null;
+let ytReady = false;
+let ytPending = null;
+
+// YouTube IFrame API ready callback
+window.onYouTubeIframeAPIReady = () => {
+  ytReady = true;
+  if (ytPending) { ytPending(); ytPending = null; }
+};
 
 // Spotify IFrame API ready callback
 window.onSpotifyIframeApiReady = (IFrameAPI) => {
@@ -460,13 +483,36 @@ function playTrack(index) {
 
   const subtype = track.subtype || 'track';
 
+  if (ytPlayer) {
+    ytPlayer.destroy();
+    ytPlayer = null;
+  }
+
   if (track.type === 'youtube') {
-    container.innerHTML = `
-      <iframe
-        src="https://www.youtube.com/embed/${track.id}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>`;
+    if (typeof YT !== 'undefined' && YT.Player) {
+      container.innerHTML = `<div id="yt-player"></div>`;
+      const createYTPlayer = () => {
+        ytPlayer = new YT.Player('yt-player', {
+          width: '100%',
+          height: '100%',
+          videoId: track.id,
+          playerVars: { autoplay: 1, rel: 0, modestbranding: 1 },
+          events: {
+            onStateChange: (e) => {
+              if (e.data === YT.PlayerState.ENDED) nextTrack();
+            }
+          }
+        });
+      };
+      if (ytReady) { createYTPlayer(); } else { ytPending = createYTPlayer; }
+    } else {
+      container.innerHTML = `
+        <iframe id="yt-iframe"
+          src="https://www.youtube.com/embed/${track.id}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1&origin=${location.origin}"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>`;
+    }
   } else if (track.type === 'spotify') {
     if (spotifyController) {
       spotifyController.destroy();
@@ -495,6 +541,11 @@ function playTrack(index) {
       }, (controller) => {
         spotifyController = controller;
         controller.play();
+        controller.addListener('playback_update', (e) => {
+          if (e.data.duration && e.data.position >= e.data.duration - 1) {
+            nextTrack();
+          }
+        });
       });
     } else {
       // API not loaded yet — fall back to manual iframe
@@ -530,14 +581,11 @@ function prevTrack() {
   }
 }
 
-// Listen for YouTube video ending via postMessage
+// Fallback: listen for YouTube postMessage state changes when IFrame API is blocked
 window.addEventListener('message', (e) => {
   try {
-    const data = JSON.parse(e.data);
-    // YT state 0 = ended
-    if (data.event === 'onStateChange' && data.info === 0) {
-      nextTrack();
-    }
+    const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+    if (data.event === 'onStateChange' && data.info === 0) nextTrack();
   } catch {}
 });
 
