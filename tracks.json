@@ -1,5 +1,17 @@
 [
   {
+    "type": "spotify",
+    "id": "1TWjFagDRfmuXfEErIOiDk",
+    "subtype": "track",
+    "title": "Strange Disease",
+    "artist": null,
+    "thumbnailUrl": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02180808e224b24a88c8d650c8",
+    "user": "profiled! by the yeast police",
+    "postedAt": "2026-03-25T22:16:39.983000+00:00",
+    "messageId": "1486489019935232042",
+    "originalUrl": "https://open.spotify.com/track/1TWjFagDRfmuXfEErIOiDk?si=bXAZJ4xMRweGiXwRZhuFCw"
+  },
+  {
     "type": "youtube",
     "id": "Prv3wl3X9O4",
     "subtype": null,
