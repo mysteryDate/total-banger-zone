@@ -1,0 +1,12 @@
+{
+  "name": "Total Banger Zone",
+  "short_name": "Banger Zone",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#222222",
+  "theme_color": "#222222",
+  "icons": [
+    { "src": "pout.webp", "sizes": "192x192", "type": "image/webp" },
+    { "src": "pout.webp", "sizes": "512x512", "type": "image/webp" }
+  ]
+}

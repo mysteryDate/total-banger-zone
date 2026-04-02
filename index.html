@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Total Banger Zone</title>
 <link rel="icon" type="image/webp" href="pout.webp">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#222222">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -423,6 +425,8 @@ let spotifyIFrameAPI = null;
 let ytPlayer = null;
 let ytReady = false;
 let ytPending = null;
+let keepaliveAudio = null;
+let keepaliveStarted = false;
 
 // YouTube IFrame API ready callback
 window.onYouTubeIframeAPIReady = () => {
@@ -485,9 +489,58 @@ function escHtml(str) {
   return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
+// ── Silent audio keepalive (prevents mobile browsers from suspending the page) ──
+const SILENT_WAV = 'data:audio/wav;base64,UklGRrQBAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YZABAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA';
+
+function ensureKeepaliveStarted() {
+  if (keepaliveStarted) return;
+  if (!keepaliveAudio) {
+    keepaliveAudio = document.createElement('audio');
+    keepaliveAudio.src = SILENT_WAV;
+    keepaliveAudio.loop = true;
+    keepaliveAudio.volume = 0;
+  }
+  keepaliveAudio.play().then(() => { keepaliveStarted = true; }).catch(() => {});
+}
+
+// ── Media Session API (lock screen controls + metadata) ──
+function updateMediaSession(track) {
+  if (!('mediaSession' in navigator)) return;
+
+  navigator.mediaSession.metadata = new MediaMetadata({
+    title: track.title,
+    artist: track.artist || track.user,
+    album: 'Total Banger Zone',
+    artwork: track.thumbnailUrl ? [
+      { src: track.thumbnailUrl, sizes: '480x360', type: 'image/jpeg' }
+    ] : []
+  });
+
+  navigator.mediaSession.setActionHandler('nexttrack', () => nextTrack());
+  navigator.mediaSession.setActionHandler('previoustrack', () => prevTrack());
+  navigator.mediaSession.setActionHandler('play', () => {
+    if (keepaliveAudio) keepaliveAudio.play();
+    const bcAudio = document.getElementById('bc-audio');
+    if (bcAudio) bcAudio.play();
+    else if (ytPlayer && ytPlayer.playVideo) ytPlayer.playVideo();
+    else if (spotifyController) spotifyController.resume();
+    navigator.mediaSession.playbackState = 'playing';
+  });
+  navigator.mediaSession.setActionHandler('pause', () => {
+    const bcAudio = document.getElementById('bc-audio');
+    if (bcAudio) bcAudio.pause();
+    else if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
+    else if (spotifyController) spotifyController.togglePlay();
+    navigator.mediaSession.playbackState = 'paused';
+  });
+
+  navigator.mediaSession.playbackState = 'playing';
+}
+
 // ── Playback ──
 function playTrack(index) {
   if (index < 0 || index >= queue.length) return;
+  ensureKeepaliveStarted();
   currentIndex = index;
   const track = queue[index];
 
@@ -499,6 +552,7 @@ function playTrack(index) {
   badge.classList.remove('hidden');
   const postedInfo = `posted by @${track.user}` + (track.postedAt ? ` · ${formatDate(track.postedAt)}` : '');
   document.getElementById('postedBy').textContent = postedInfo;
+  updateMediaSession(track);
 
   // Build embed
   const container = document.getElementById('embedContainer');
@@ -634,6 +688,9 @@ window.addEventListener('message', (e) => {
 });
 
 // Init
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
 loadTracks();
 </script>
 </body>
