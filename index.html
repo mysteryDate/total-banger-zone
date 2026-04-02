@@ -16,6 +16,7 @@
     --muted: #888;
     --youtube: #c33;
     --spotify: #1a8a40;
+    --bandcamp: #1da0c3;
   }
 
   html, body {
@@ -118,6 +119,27 @@
     font-size: 14px;
   }
 
+  /* Bandcamp audio player */
+  .bandcamp-player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 520px;
+    margin: auto;
+  }
+
+  .bandcamp-art {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+  }
+
+  .bandcamp-player audio {
+    width: 100%;
+  }
+
   /* Spotify compact wrapper */
   .spotify-wrapper {
     width: 100%;
@@ -162,6 +184,7 @@
 
   .source-badge.youtube { color: var(--youtube); border: 1px solid var(--youtube); }
   .source-badge.spotify { color: var(--spotify); border: 1px solid var(--spotify); }
+  .source-badge.bandcamp { color: var(--bandcamp); border: 1px solid var(--bandcamp); }
 
   .btn {
     background: transparent;
@@ -259,6 +282,7 @@
 
   .queue-source-dot.youtube { background: var(--youtube); }
   .queue-source-dot.spotify { background: var(--spotify); }
+  .queue-source-dot.bandcamp { background: var(--bandcamp); }
 
   .queue-item-info {
     flex: 1;
@@ -512,6 +536,26 @@ function playTrack(index) {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
         </iframe>`;
+    }
+  } else if (track.type === 'bandcamp') {
+    if (track.streamUrl) {
+      container.innerHTML = `
+        <div class="bandcamp-player">
+          ${track.thumbnailUrl ? `<img src="${escHtml(track.thumbnailUrl)}" class="bandcamp-art">` : ''}
+          <audio id="bc-audio" autoplay controls src="${escHtml(track.streamUrl)}"></audio>
+        </div>`;
+      const audio = document.getElementById('bc-audio');
+      audio.addEventListener('ended', () => nextTrack());
+    } else {
+      // Fallback to iframe embed if no stream URL
+      const embedSrc = track.embedUrl || `https://bandcamp.com/EmbeddedPlayer/track=${track.id}/size=large/bgcol=222222/linkcol=1da0c3/tracklist=false/transparent=true/`;
+      container.innerHTML = `
+        <div class="spotify-wrapper">
+          <iframe src="${escHtml(embedSrc)}"
+            style="border: 0; width: 100%; height: 120px;"
+            seamless>
+          </iframe>
+        </div>`;
     }
   } else if (track.type === 'spotify') {
     if (spotifyController) {

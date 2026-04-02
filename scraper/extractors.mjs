@@ -28,6 +28,17 @@ const extractors = [
       return `https://open.spotify.com/embed/${subtype}/${id}`;
     },
   },
+  {
+    type: 'bandcamp',
+    pattern: /([a-zA-Z0-9-]+)\.bandcamp\.com\/track\/([a-zA-Z0-9-]+)/,
+    getId(url) {
+      const m = url.match(this.pattern);
+      return m ? `${m[1]}/${m[2]}` : null;
+    },
+    embedUrl() {
+      return null; // embed URL resolved from oEmbed at metadata time
+    },
+  },
 ];
 
 /**

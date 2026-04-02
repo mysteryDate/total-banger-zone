@@ -77,7 +77,7 @@ async function main() {
       if (existingKeys.has(key)) continue; // skip duplicates
 
       // Fetch metadata (title, artist, thumbnail)
-      const meta = await fetchMetadata(link.type, link.id, link.subtype);
+      const meta = await fetchMetadata(link.type, link.id, link.subtype, link.originalUrl);
 
       newTracks.push({
         type: link.type,
@@ -86,6 +86,8 @@ async function main() {
         title: meta.title,
         artist: meta.artist,
         thumbnailUrl: meta.thumbnailUrl,
+        embedUrl: meta.embedUrl || null,
+        streamUrl: meta.streamUrl || null,
         user,
         postedAt: msg.timestamp,
         messageId: msg.id,

@@ -1,5 +1,19 @@
 [
   {
+    "type": "bandcamp",
+    "id": "yoodooright/join-be-curst",
+    "subtype": null,
+    "title": "Join, Be Curst",
+    "artist": "yoo doo right",
+    "thumbnailUrl": "https://f4.bcbits.com/img/a0602042287_5.jpg",
+    "embedUrl": "https://bandcamp.com/EmbeddedPlayer/v=2/track=3930647975/size=large/tracklist=false/artwork=small/",
+    "streamUrl": "https://t4.bcbits.com/stream/cf2a54de30b1529bf13d5852ea425083/mp3-128/3930647975?p=0&ts=1775240794&t=5f9a4a679188093c56485151c8878ce988347fe9&token=1775240794_f02d5c933e42080f7117de55145f418300843e54",
+    "user": "Scorch Abachris",
+    "postedAt": "2026-04-02T17:29:41.274000+00:00",
+    "messageId": "1489315902360125730",
+    "originalUrl": "https://yoodooright.bandcamp.com/track/join-be-curst"
+  },
+  {
     "type": "youtube",
     "id": "-2oTvh_zTjA",
     "subtype": null,
@@ -10,6 +24,20 @@
     "postedAt": "2026-04-02T16:00:39.821000+00:00",
     "messageId": "1489293498682445905",
     "originalUrl": "https://www.youtube.com/watch?v=-2oTvh_zTjA"
+  },
+  {
+    "type": "bandcamp",
+    "id": "devillemtl/dopamina-2",
+    "subtype": null,
+    "title": "Dopamina",
+    "artist": "De.Ville",
+    "thumbnailUrl": "https://f4.bcbits.com/img/a0732874291_5.jpg",
+    "embedUrl": "https://bandcamp.com/EmbeddedPlayer/v=2/track=1747252979/size=large/tracklist=false/artwork=small/",
+    "streamUrl": "https://t4.bcbits.com/stream/02d5d6872f71caa902a318eecb84244d/mp3-128/1747252979?p=0&ts=1775240794&t=34e78d891c722c3793c193af384defe6042d948f&token=1775240794_4562fb4117d337e03409b57b697a64c7345e4bf2",
+    "user": "Yeast Police",
+    "postedAt": "2026-04-02T14:14:34.336000+00:00",
+    "messageId": "1489266799903113366",
+    "originalUrl": "https://devillemtl.bandcamp.com/track/dopamina-2"
   },
   {
     "type": "youtube",
@@ -456,6 +484,20 @@
     "originalUrl": "https://youtu.be/utGpHUsHBBU?si=KnmE3WVD5Ba4lNfU"
   },
   {
+    "type": "bandcamp",
+    "id": "anginedepoitrine/fabienk-2",
+    "subtype": null,
+    "title": "Fabienk",
+    "artist": "Angine de Poitrine",
+    "thumbnailUrl": "https://f4.bcbits.com/img/a0229783816_5.jpg",
+    "embedUrl": "https://bandcamp.com/EmbeddedPlayer/v=2/track=3693381847/size=large/tracklist=false/artwork=small/",
+    "streamUrl": "https://t4.bcbits.com/stream/2b7fdc11bd3af8acfaf4a59e33c93ec6/mp3-128/3693381847?p=0&ts=1775240793&t=931687fd194ab80b59a67d4101e6daf6cb5cff8f&token=1775240793_2b09d20e42b535614c0aae797ef1321994efb213",
+    "user": "Yeast Police",
+    "postedAt": "2026-03-17T15:09:13.846000+00:00",
+    "messageId": "1483482349315428403",
+    "originalUrl": "https://anginedepoitrine.bandcamp.com/track/fabienk-2"
+  },
+  {
     "type": "youtube",
     "id": "Id28GB-51pw",
     "subtype": null,
@@ -538,6 +580,20 @@
     "postedAt": "2026-03-10T21:09:43.981000+00:00",
     "messageId": "1481036357617979432",
     "originalUrl": "https://youtu.be/Kh8-r6O43Rw?si=vKoggobH6oPOTbwk"
+  },
+  {
+    "type": "bandcamp",
+    "id": "preoccupations/silhouettes",
+    "subtype": null,
+    "title": "Silhouettes",
+    "artist": "Preoccupations",
+    "thumbnailUrl": "https://f4.bcbits.com/img/a0093881531_5.jpg",
+    "embedUrl": "https://bandcamp.com/EmbeddedPlayer/v=2/track=2714728981/size=large/tracklist=false/artwork=small/",
+    "streamUrl": "https://t4.bcbits.com/stream/decdbd033e0607a12f71664df3dbc72f/mp3-128/2714728981?p=0&ts=1775240792&t=32167735b780a522f98f3ea5312f5a050e28b7f8&token=1775240792_51b29d8760319c6016c0e2b3ecdb5c6e912f2715",
+    "user": "Scorch Abachris",
+    "postedAt": "2026-03-10T20:14:18.512000+00:00",
+    "messageId": "1481022409589915778",
+    "originalUrl": "https://preoccupations.bandcamp.com/track/silhouettes"
   },
   {
     "type": "youtube",
@@ -1018,6 +1074,20 @@
     "postedAt": "2026-01-08T16:48:58.134000+00:00",
     "messageId": "1458865074377855059",
     "originalUrl": "https://www.youtube.com/watch?v=cZBvrpXya2A"
+  },
+  {
+    "type": "bandcamp",
+    "id": "caterinabarbieri/bow-of-perception-2",
+    "subtype": null,
+    "title": "Bow of Perception",
+    "artist": "caterina barbieri",
+    "thumbnailUrl": "https://f4.bcbits.com/img/a0921405721_5.jpg",
+    "embedUrl": "https://bandcamp.com/EmbeddedPlayer/v=2/track=3075524763/size=large/tracklist=false/artwork=small/",
+    "streamUrl": "https://t4.bcbits.com/stream/3c20c267d9fdd4a45602438faf2057be/mp3-128/3075524763?p=0&ts=1775240791&t=2bfb4d519529679ad61eac44f6f864ae9dbc6d61&token=1775240791_b951d5dbe2afd06530a4b87f0eda5dec7cb16da8",
+    "user": "Scorch Abachris",
+    "postedAt": "2026-01-07T22:24:11.860000+00:00",
+    "messageId": "1458587049593540672",
+    "originalUrl": "https://caterinabarbieri.bandcamp.com/track/bow-of-perception-2"
   },
   {
     "type": "youtube",
