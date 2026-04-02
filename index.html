@@ -81,12 +81,36 @@
     overflow: hidden;
   }
 
+  .now-playing-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .now-playing-label {
-    font-size: 12px;
+    font-size: 20px;
     letter-spacing: 2px;
     color: var(--muted);
     text-transform: uppercase;
   }
+
+  .shuffle-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .shuffle-btn svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .shuffle-btn.off svg { color: var(--muted); }
+  .shuffle-btn.on svg { color: var(--text); }
 
   .embed-container {
     flex: 1;
@@ -392,7 +416,17 @@
   </div>
 
   <div class="player-area">
-    <div class="now-playing-label">Now Playing</div>
+    <div class="now-playing-row">
+      <div class="now-playing-label">Now Playing</div>
+      <button class="shuffle-btn off" id="shuffleBtn" title="Shuffle" onclick="toggleShuffle()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 7h4l10 10h4"></path>
+          <path d="M2 17h4l10-10h4"></path>
+          <polyline points="18 4 22 7 18 10"></polyline>
+          <polyline points="18 14 22 17 18 20"></polyline>
+        </svg>
+      </button>
+    </div>
 
     <div class="embed-container" id="embedContainer">
       <div class="embed-placeholder" id="placeholder">
@@ -427,6 +461,7 @@ let ytReady = false;
 let ytPending = null;
 let keepaliveAudio = null;
 let keepaliveStarted = false;
+let shuffleEnabled = false;
 
 // YouTube IFrame API ready callback
 window.onYouTubeIframeAPIReady = () => {
@@ -667,8 +702,19 @@ function playTrack(index) {
   }, 100);
 }
 
+function toggleShuffle() {
+  shuffleEnabled = !shuffleEnabled;
+  const btn = document.getElementById('shuffleBtn');
+  btn.className = `shuffle-btn ${shuffleEnabled ? 'on' : 'off'}`;
+}
+
 function nextTrack() {
-  if (currentIndex < queue.length - 1) {
+  if (shuffleEnabled) {
+    const remaining = queue.map((_, i) => i).filter(i => i !== currentIndex);
+    if (remaining.length > 0) {
+      playTrack(remaining[Math.floor(Math.random() * remaining.length)]);
+    }
+  } else if (currentIndex < queue.length - 1) {
     playTrack(currentIndex + 1);
   }
 }
