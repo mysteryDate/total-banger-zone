@@ -1,511 +1,575 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Total Banger Zone</title>
-<link rel="icon" type="image/webp" href="pout.webp">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#222222">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Total Banger Zone</title>
+  <link rel="icon" type="image/webp" href="pout.webp">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#222222">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  :root {
-    --bg: #222;
-    --surface: #2a2a2a;
-    --border: #555;
-    --text: #ccc;
-    --muted: #888;
-    --youtube: #c33;
-    --spotify: #1a8a40;
-    --bandcamp: #1da0c3;
-  }
+    :root {
+      --bg: #222;
+      --surface: #2a2a2a;
+      --border: #555;
+      --text: #ccc;
+      --muted: #888;
+      --youtube: #c33;
+      --spotify: #1a8a40;
+      --bandcamp: #1da0c3;
+    }
 
-  html, body {
-    height: 100%;
-    background: var(--bg);
-    color: var(--text);
-    font-family: sans-serif;
-    overflow: hidden;
-  }
+    html,
+    body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: sans-serif;
+      overflow: hidden;
+    }
 
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: url('pout.webp') center / cover no-repeat;
-    opacity: 0.08;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .app { position: relative; z-index: 1; }
-
-  .app {
-    display: grid;
-    grid-template-columns: 360px 1fr;
-    grid-template-rows: 64px 1fr;
-    height: 100vh;
-  }
-
-  /* HEADER */
-  header {
-    grid-column: 1 / -1;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 0 28px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .logo {
-    font-size: 24px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text);
-  }
-
-  .header-channel {
-    margin-left: auto;
-    font-size: 13px;
-    color: var(--muted);
-  }
-
-  /* PLAYER AREA */
-  .player-area {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    gap: 20px;
-    overflow: hidden;
-  }
-
-  .now-playing-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .now-playing-label {
-    font-size: 20px;
-    letter-spacing: 2px;
-    color: var(--muted);
-    text-transform: uppercase;
-  }
-
-  .shuffle-btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .shuffle-btn svg {
-    width: 30px;
-    height: 30px;
-  }
-
-  .shuffle-btn.off svg { color: var(--muted); }
-  .shuffle-btn.on svg { color: var(--text); }
-
-  .embed-container {
-    flex: 1;
-    border: 1px solid var(--border);
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 0;
-  }
-
-  .embed-container iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-  }
-
-  .embed-placeholder {
-    text-align: center;
-    color: var(--muted);
-  }
-
-  .embed-placeholder .big-icon {
-    font-size: 48px;
-    margin-bottom: 16px;
-    opacity: 0.3;
-  }
-
-  .embed-placeholder p {
-    font-size: 14px;
-  }
-
-  /* Bandcamp audio player */
-  .bandcamp-player {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
-    max-width: 520px;
-    margin: auto;
-  }
-
-  .bandcamp-art {
-    max-width: 100%;
-    max-height: 300px;
-    object-fit: contain;
-  }
-
-  .bandcamp-player audio {
-    width: 100%;
-  }
-
-  /* Spotify compact wrapper */
-  .spotify-wrapper {
-    width: 100%;
-    max-width: 520px;
-    margin: auto;
-  }
-
-  /* CONTROLS */
-  .controls {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .track-info {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .track-title {
-    font-size: 15px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: var(--text);
-  }
-
-  .track-meta {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 3px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .source-badge {
-    font-size: 10px;
-    padding: 1px 4px;
-    letter-spacing: 0.5px;
-  }
-
-  .source-badge.youtube { color: var(--youtube); border: 1px solid var(--youtube); }
-  .source-badge.spotify { color: var(--spotify); border: 1px solid var(--spotify); }
-  .source-badge.bandcamp { color: var(--bandcamp); border: 1px solid var(--bandcamp); }
-
-  .btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text);
-    width: 42px; height: 42px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    flex-shrink: 0;
-  }
-
-  .btn:hover {
-    border-color: #999;
-    color: #fff;
-  }
-
-  /* QUEUE SIDEBAR */
-  .sidebar {
-    border-right: 1px solid var(--border);
-    background: var(--surface);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-
-  .sidebar-header {
-    padding: 20px 20px 14px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .sidebar-title {
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--text);
-  }
-
-  .queue-count {
-    font-size: 11px;
-    color: var(--muted);
-  }
-
-  .queue-list {
-    flex: 1;
-    overflow-y: auto;
-    padding: 10px;
-  }
-
-  .queue-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 12px;
-    cursor: pointer;
-    border: 1px solid transparent;
-    margin-bottom: 4px;
-  }
-
-  .queue-item:hover {
-    background: var(--surface);
-  }
-
-  .queue-item.active {
-    background: #333;
-    border-left: 3px solid var(--text);
-  }
-
-  .queue-item.played {
-    opacity: 0.45;
-  }
-
-  .queue-index {
-    font-size: 11px;
-    color: var(--muted);
-    width: 20px;
-    text-align: right;
-    flex-shrink: 0;
-  }
-
-  .queue-item.active .queue-index {
-    color: #fff;
-  }
-
-  .queue-source-dot {
-    width: 8px; height: 8px;
-    flex-shrink: 0;
-  }
-
-  .queue-source-dot.youtube { background: var(--youtube); }
-  .queue-source-dot.spotify { background: var(--spotify); }
-  .queue-source-dot.bandcamp { background: var(--bandcamp); }
-
-  .queue-item-info {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .queue-item-title {
-    font-size: 13px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: var(--text);
-  }
-
-  .queue-item.active .queue-item-title {
-    color: #fff;
-  }
-
-  .queue-item-user {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 2px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-  .queue-item-user::before {
-    content: '@';
-    color: var(--muted);
-  }
-
-  .queue-item-date {
-    font-size: 10px;
-    color: var(--muted);
-    opacity: 0.6;
-    margin-left: auto;
-    flex-shrink: 0;
-  }
-
-  /* Loading state */
-  .loading {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--muted);
-  }
-
-  .hidden { display: none !important; }
-
-  /* Mobile layout */
-  @media (max-width: 768px) {
-    html, body { overflow: auto; }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: url('pout.webp') center / cover no-repeat;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 0;
+    }
 
     .app {
-      grid-template-columns: 1fr;
-      grid-template-rows: 56px auto 1fr;
-      height: auto;
-      min-height: 100vh;
+      position: relative;
+      z-index: 1;
     }
 
-    header { padding: 0 16px; }
+    .app {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      grid-template-rows: 64px 1fr;
+      height: 100vh;
+    }
 
-    .logo { font-size: 18px; }
-
-    .sidebar {
-      border-right: none;
+    /* HEADER */
+    header {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 0 28px;
       border-bottom: 1px solid var(--border);
-      order: 1;
-      max-height: 50vh;
     }
 
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .header-channel {
+      margin-left: auto;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* PLAYER AREA */
     .player-area {
-      order: 0;
-      padding: 14px;
-      gap: 14px;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      gap: 20px;
+      overflow: hidden;
     }
 
-    .embed-container { min-height: 220px; }
+    .now-playing-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-    .controls { gap: 8px; }
+    .now-playing-label {
+      font-size: 20px;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
 
-    .btn { width: 36px; height: 36px; font-size: 14px; }
-  }
-</style>
+    .shuffle-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .shuffle-btn svg {
+      width: 30px;
+      height: 30px;
+    }
+
+    .shuffle-btn.off svg {
+      color: var(--muted);
+    }
+
+    .shuffle-btn.on svg {
+      color: var(--text);
+    }
+
+    .embed-container {
+      flex: 1;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 0;
+    }
+
+    .embed-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .embed-container .spotify-wrapper iframe {
+      height: 85px;
+    }
+
+    .embed-placeholder {
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .embed-placeholder .big-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      opacity: 0.3;
+    }
+
+    .embed-placeholder p {
+      font-size: 14px;
+    }
+
+    /* Bandcamp audio player */
+    .bandcamp-player {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      width: 100%;
+      max-width: 520px;
+      margin: auto;
+    }
+
+    .bandcamp-art {
+      max-width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+    }
+
+    .bandcamp-player audio {
+      width: 100%;
+    }
+
+    /* Spotify compact wrapper */
+    .spotify-wrapper {
+      width: 100%;
+      max-width: 520px;
+      margin: auto;
+    }
+
+    /* CONTROLS */
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .track-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .track-title {
+      font-size: 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--text);
+    }
+
+    .track-meta {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .source-badge {
+      font-size: 10px;
+      padding: 1px 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .source-badge.youtube {
+      color: var(--youtube);
+      border: 1px solid var(--youtube);
+    }
+
+    .source-badge.spotify {
+      color: var(--spotify);
+      border: 1px solid var(--spotify);
+    }
+
+    .source-badge.bandcamp {
+      color: var(--bandcamp);
+      border: 1px solid var(--bandcamp);
+    }
+
+    .btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 42px;
+      height: 42px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .btn:hover {
+      border-color: #999;
+      color: #fff;
+    }
+
+    /* QUEUE SIDEBAR */
+    .sidebar {
+      border-right: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .sidebar-header {
+      padding: 20px 20px 14px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sidebar-title {
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .queue-count {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .queue-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+    }
+
+    .queue-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      margin-bottom: 4px;
+    }
+
+    .queue-item:hover {
+      background: var(--surface);
+    }
+
+    .queue-item.active {
+      background: #333;
+      border-left: 3px solid var(--text);
+    }
+
+    .queue-item.played {
+      opacity: 0.45;
+    }
+
+    .queue-index {
+      font-size: 11px;
+      color: var(--muted);
+      width: 20px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .queue-item.active .queue-index {
+      color: #fff;
+    }
+
+    .queue-source-dot {
+      width: 8px;
+      height: 8px;
+      flex-shrink: 0;
+    }
+
+    .queue-source-dot.youtube {
+      background: var(--youtube);
+    }
+
+    .queue-source-dot.spotify {
+      background: var(--spotify);
+    }
+
+    .queue-source-dot.bandcamp {
+      background: var(--bandcamp);
+    }
+
+    .queue-item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .queue-item-title {
+      font-size: 13px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--text);
+    }
+
+    .queue-item.active .queue-item-title {
+      color: #fff;
+    }
+
+    .queue-item-user {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .queue-item-user::before {
+      content: '@';
+      color: var(--muted);
+    }
+
+    .queue-item-date {
+      font-size: 10px;
+      color: var(--muted);
+      opacity: 0.6;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    /* Loading state */
+    .loading {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Mobile layout */
+    @media (max-width: 768px) {
+
+      html,
+      body {
+        overflow: auto;
+      }
+
+      .app {
+        grid-template-columns: 1fr;
+        grid-template-rows: 56px auto 1fr;
+        height: auto;
+        min-height: 100vh;
+      }
+
+      header {
+        padding: 0 16px;
+      }
+
+      .logo {
+        font-size: 18px;
+      }
+
+      .sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        order: 1;
+        max-height: 50vh;
+      }
+
+      .player-area {
+        order: 0;
+        padding: 14px;
+        gap: 14px;
+      }
+
+      .embed-container {
+        min-height: 220px;
+      }
+
+
+      .controls {
+        gap: 8px;
+      }
+
+      .btn {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="app">
-  <header>
-    <div class="logo">Total Banger Zone</div>
-    <div class="header-channel">#music-links</div>
-  </header>
+  <div class="app">
+    <header>
+      <div class="logo">Total Banger Zone</div>
+      <div class="header-channel">#music-links</div>
+    </header>
 
-  <div class="sidebar">
-    <div class="sidebar-header">
-      <div class="sidebar-title">Queue</div>
-      <div class="queue-count" id="queueCount">0 tracks</div>
-    </div>
-
-    <div class="queue-list" id="queueList">
-      <div class="loading" id="loadingIndicator">
-        <p>Loading tracks...</p>
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-title">Queue</div>
+        <div class="queue-count" id="queueCount">0 tracks</div>
       </div>
-    </div>
-  </div>
 
-  <div class="player-area">
-    <div class="now-playing-row">
-      <div class="now-playing-label">Now Playing</div>
-      <button class="shuffle-btn off" id="shuffleBtn" title="Shuffle" onclick="toggleShuffle()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M2 7h4l10 10h4"></path>
-          <path d="M2 17h4l10-10h4"></path>
-          <polyline points="18 4 22 7 18 10"></polyline>
-          <polyline points="18 14 22 17 18 20"></polyline>
-        </svg>
-      </button>
-    </div>
-
-    <div class="embed-container" id="embedContainer">
-      <div class="embed-placeholder" id="placeholder">
-        <div class="big-icon">🎵</div>
-        <p>Select a track from the queue to begin</p>
-      </div>
-    </div>
-
-    <div class="controls">
-      <button class="btn" id="prevBtn" title="Previous" onclick="prevTrack()">&#9664;&#9664;</button>
-      <div class="track-info">
-        <div class="track-title" id="trackTitle">No track selected</div>
-        <div class="track-meta">
-          <span id="sourceBadge" class="source-badge hidden"></span>
-          <span id="postedBy" style="color:var(--muted); font-size:12px;"></span>
+      <div class="queue-list" id="queueList">
+        <div class="loading" id="loadingIndicator">
+          <p>Loading tracks...</p>
         </div>
       </div>
-      <button class="btn" id="nextBtn" title="Next" onclick="nextTrack()">&#9654;&#9654;</button>
+    </div>
+
+    <div class="player-area">
+      <div class="now-playing-row">
+        <div class="now-playing-label">Now Playing</div>
+        <button class="shuffle-btn off" id="shuffleBtn" title="Shuffle" onclick="toggleShuffle()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M2 7h4l10 10h4"></path>
+            <path d="M2 17h4l10-10h4"></path>
+            <polyline points="18 4 22 7 18 10"></polyline>
+            <polyline points="18 14 22 17 18 20"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <div class="embed-container" id="embedContainer">
+        <div class="embed-placeholder" id="placeholder">
+          <div class="big-icon">🎵</div>
+          <p>Select a track from the queue to begin</p>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="btn" id="prevBtn" title="Previous" onclick="prevTrack()">&#9664;&#9664;</button>
+        <div class="track-info">
+          <div class="track-title" id="trackTitle">No track selected</div>
+          <div class="track-meta">
+            <span id="sourceBadge" class="source-badge hidden"></span>
+            <span id="postedBy" style="color:var(--muted); font-size:12px;"></span>
+          </div>
+        </div>
+        <button class="btn" id="nextBtn" title="Next" onclick="nextTrack()">&#9654;&#9654;</button>
+      </div>
     </div>
   </div>
-</div>
 
-<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
-<script src="https://www.youtube.com/iframe_api" onerror="ytReady=false"></script>
-<script>
-let queue = [];
-let currentIndex = -1;
-let spotifyController = null;
-let spotifyIFrameAPI = null;
-let ytPlayer = null;
-let ytReady = false;
-let ytPending = null;
-let keepaliveAudio = null;
-let keepaliveStarted = false;
-let shuffleEnabled = false;
+  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+  <script src="https://www.youtube.com/iframe_api" onerror="ytReady=false"></script>
+  <script>
+    let queue = [];
+    let currentIndex = -1;
+    let spotifyController = null;
+    let spotifyIFrameAPI = null;
+    let spotifyPending = null;
+    let ytPlayer = null;
+    let ytReady = false;
+    let ytPending = null;
+    let keepaliveAudio = null;
+    let keepaliveStarted = false;
+    let shuffleEnabled = false;
 
-// YouTube IFrame API ready callback
-window.onYouTubeIframeAPIReady = () => {
-  ytReady = true;
-  if (ytPending) { ytPending(); ytPending = null; }
-};
+    // YouTube IFrame API ready callback
+    window.onYouTubeIframeAPIReady = () => {
+      ytReady = true;
+      if (ytPending) { ytPending(); ytPending = null; }
+    };
 
-// Spotify IFrame API ready callback
-window.onSpotifyIframeApiReady = (IFrameAPI) => {
-  spotifyIFrameAPI = IFrameAPI;
-};
+    // Spotify IFrame API ready callback
+    window.onSpotifyIframeApiReady = (IFrameAPI) => {
+      spotifyIFrameAPI = IFrameAPI;
+      if (spotifyPending) { spotifyPending(); spotifyPending = null; }
+    };
 
-// ── Load tracks from scraped data ──
-async function loadTracks() {
-  try {
-    const res = await fetch('tracks.json');
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    queue = await res.json();
-  } catch (err) {
-    console.warn('Could not load tracks.json:', err.message);
-    queue = [];
-  }
-  document.getElementById('loadingIndicator').classList.add('hidden');
-  renderQueue();
-  if (queue.length === 0) {
-    document.getElementById('placeholder').querySelector('p').textContent =
-      'No tracks yet — post some links in #music-links!';
-  }
-}
+    // ── Load tracks from scraped data ──
+    async function loadTracks() {
+      try {
+        const res = await fetch('tracks.json');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        queue = await res.json();
+      } catch (err) {
+        console.warn('Could not load tracks.json:', err.message);
+        queue = [];
+      }
+      document.getElementById('loadingIndicator').classList.add('hidden');
+      renderQueue();
+      if (queue.length === 0) {
+        document.getElementById('placeholder').querySelector('p').textContent =
+          'No tracks yet — post some links in #music-links!';
+      }
+    }
 
-// ── Format a date string for display ──
-function formatDate(isoString) {
-  if (!isoString) return '';
-  const d = new Date(isoString);
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  return `${months[d.getMonth()]} ${d.getDate()}`;
-}
+    // ── Format a date string for display ──
+    function formatDate(isoString) {
+      if (!isoString) return '';
+      const d = new Date(isoString);
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      return `${months[d.getMonth()]} ${d.getDate()}`;
+    }
 
-// ── Render the queue sidebar ──
-function renderQueue() {
-  const list = document.getElementById('queueList');
-  document.getElementById('queueCount').textContent = `${queue.length} track${queue.length !== 1 ? 's' : ''}`;
+    // ── Render the queue sidebar ──
+    function renderQueue() {
+      const list = document.getElementById('queueList');
+      document.getElementById('queueCount').textContent = `${queue.length} track${queue.length !== 1 ? 's' : ''}`;
 
-  list.innerHTML = queue.map((track, i) => `
+      list.innerHTML = queue.map((track, i) => `
     <div class="queue-item ${i === currentIndex ? 'active' : ''} ${i < currentIndex ? 'played' : ''}"
          onclick="playTrack(${i})">
       <div class="queue-index">
@@ -518,226 +582,245 @@ function renderQueue() {
       </div>
     </div>
   `).join('');
-}
+    }
 
-function escHtml(str) {
-  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
+    function escHtml(str) {
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
 
-// ── Silent audio keepalive (prevents mobile browsers from suspending the page) ──
-const SILENT_WAV = 'data:audio/wav;base64,UklGRrQBAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YZABAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA';
+    // ── Silent audio keepalive (prevents mobile browsers from suspending the page) ──
+    const SILENT_WAV = 'data:audio/wav;base64,UklGRrQBAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YZABAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA';
 
-function ensureKeepaliveStarted() {
-  if (keepaliveStarted) return;
-  if (!keepaliveAudio) {
-    keepaliveAudio = document.createElement('audio');
-    keepaliveAudio.src = SILENT_WAV;
-    keepaliveAudio.loop = true;
-    keepaliveAudio.volume = 0;
-  }
-  keepaliveAudio.play().then(() => { keepaliveStarted = true; }).catch(() => {});
-}
+    function ensureKeepaliveStarted() {
+      if (keepaliveStarted) return;
+      if (!keepaliveAudio) {
+        keepaliveAudio = document.createElement('audio');
+        keepaliveAudio.src = SILENT_WAV;
+        keepaliveAudio.loop = true;
+        keepaliveAudio.volume = 0;
+      }
+      keepaliveAudio.play().then(() => { keepaliveStarted = true; }).catch(() => { });
+    }
 
-// ── Media Session API (lock screen controls + metadata) ──
-function updateMediaSession(track) {
-  if (!('mediaSession' in navigator)) return;
+    // ── Media Session API (lock screen controls + metadata) ──
+    function updateMediaSession(track) {
+      if (!('mediaSession' in navigator)) return;
 
-  navigator.mediaSession.metadata = new MediaMetadata({
-    title: track.title,
-    artist: track.artist || track.user,
-    album: 'Total Banger Zone',
-    artwork: track.thumbnailUrl ? [
-      { src: track.thumbnailUrl, sizes: '480x360', type: 'image/jpeg' }
-    ] : []
-  });
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: track.title,
+        artist: track.artist || track.user,
+        album: 'Total Banger Zone',
+        artwork: track.thumbnailUrl ? [
+          { src: track.thumbnailUrl, sizes: '480x360', type: 'image/jpeg' }
+        ] : []
+      });
 
-  navigator.mediaSession.setActionHandler('nexttrack', () => nextTrack());
-  navigator.mediaSession.setActionHandler('previoustrack', () => prevTrack());
-  navigator.mediaSession.setActionHandler('play', () => {
-    if (keepaliveAudio) keepaliveAudio.play();
-    const bcAudio = document.getElementById('bc-audio');
-    if (bcAudio) bcAudio.play();
-    else if (ytPlayer && ytPlayer.playVideo) ytPlayer.playVideo();
-    else if (spotifyController) spotifyController.resume();
-    navigator.mediaSession.playbackState = 'playing';
-  });
-  navigator.mediaSession.setActionHandler('pause', () => {
-    const bcAudio = document.getElementById('bc-audio');
-    if (bcAudio) bcAudio.pause();
-    else if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
-    else if (spotifyController) spotifyController.togglePlay();
-    navigator.mediaSession.playbackState = 'paused';
-  });
+      navigator.mediaSession.setActionHandler('nexttrack', () => nextTrack());
+      navigator.mediaSession.setActionHandler('previoustrack', () => prevTrack());
+      navigator.mediaSession.setActionHandler('play', () => {
+        if (keepaliveAudio) keepaliveAudio.play();
+        const bcAudio = document.getElementById('bc-audio');
+        if (bcAudio) bcAudio.play();
+        else if (ytPlayer && ytPlayer.playVideo) ytPlayer.playVideo();
+        else if (spotifyController) spotifyController.resume();
+        navigator.mediaSession.playbackState = 'playing';
+      });
+      navigator.mediaSession.setActionHandler('pause', () => {
+        const bcAudio = document.getElementById('bc-audio');
+        if (bcAudio) bcAudio.pause();
+        else if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
+        else if (spotifyController) spotifyController.togglePlay();
+        navigator.mediaSession.playbackState = 'paused';
+      });
 
-  navigator.mediaSession.playbackState = 'playing';
-}
+      navigator.mediaSession.playbackState = 'playing';
+    }
 
-// ── Playback ──
-function playTrack(index) {
-  if (index < 0 || index >= queue.length) return;
-  ensureKeepaliveStarted();
-  currentIndex = index;
-  const track = queue[index];
+    // ── Playback ──
+    function playTrack(index) {
+      if (index < 0 || index >= queue.length) return;
+      ensureKeepaliveStarted();
+      currentIndex = index;
+      const track = queue[index];
 
-  // Update info bar
-  document.getElementById('trackTitle').textContent = track.title;
-  const badge = document.getElementById('sourceBadge');
-  badge.textContent = track.type.toUpperCase();
-  badge.className = `source-badge ${track.type}`;
-  badge.classList.remove('hidden');
-  const postedInfo = `posted by @${track.user}` + (track.postedAt ? ` · ${formatDate(track.postedAt)}` : '');
-  document.getElementById('postedBy').textContent = postedInfo;
-  updateMediaSession(track);
+      // Update info bar
+      document.getElementById('trackTitle').textContent = track.title;
+      const badge = document.getElementById('sourceBadge');
+      badge.textContent = track.type.toUpperCase();
+      badge.className = `source-badge ${track.type}`;
+      badge.classList.remove('hidden');
+      const postedInfo = `posted by @${track.user}` + (track.postedAt ? ` · ${formatDate(track.postedAt)}` : '');
+      document.getElementById('postedBy').textContent = postedInfo;
+      updateMediaSession(track);
 
-  // Build embed
-  const container = document.getElementById('embedContainer');
-  const placeholder = document.getElementById('placeholder');
-  if (placeholder) placeholder.classList.add('hidden');
+      // Build embed
+      const container = document.getElementById('embedContainer');
+      const placeholder = document.getElementById('placeholder');
+      if (placeholder) placeholder.classList.add('hidden');
 
-  const subtype = track.subtype || 'track';
+      const subtype = track.subtype || 'track';
 
-  if (ytPlayer) {
-    ytPlayer.destroy();
-    ytPlayer = null;
-  }
+      if (ytPlayer) {
+        ytPlayer.destroy();
+        ytPlayer = null;
+      }
 
-  if (track.type === 'youtube') {
-    if (typeof YT !== 'undefined' && YT.Player) {
-      container.innerHTML = `<div id="yt-player"></div>`;
-      const createYTPlayer = () => {
-        ytPlayer = new YT.Player('yt-player', {
-          width: '100%',
-          height: '100%',
-          videoId: track.id,
-          playerVars: { autoplay: 1, rel: 0, modestbranding: 1 },
-          events: {
-            onStateChange: (e) => {
-              if (e.data === YT.PlayerState.ENDED) nextTrack();
-            }
-          }
-        });
-      };
-      if (ytReady) { createYTPlayer(); } else { ytPending = createYTPlayer; }
-    } else {
-      container.innerHTML = `
+      if (track.type === 'youtube') {
+        if (typeof YT !== 'undefined' && YT.Player) {
+          container.innerHTML = `<div id="yt-player"></div>`;
+          const createYTPlayer = () => {
+            ytPlayer = new YT.Player('yt-player', {
+              width: '100%',
+              height: '100%',
+              videoId: track.id,
+              playerVars: { autoplay: 1, rel: 0, modestbranding: 1 },
+              events: {
+                onStateChange: (e) => {
+                  if (e.data === YT.PlayerState.ENDED) nextTrack();
+                }
+              }
+            });
+          };
+          if (ytReady) { createYTPlayer(); } else { ytPending = createYTPlayer; }
+        } else {
+          container.innerHTML = `
         <iframe id="yt-iframe"
           src="https://www.youtube.com/embed/${track.id}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1&origin=${location.origin}"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
         </iframe>`;
-    }
-  } else if (track.type === 'bandcamp') {
-    if (track.streamUrl) {
-      container.innerHTML = `
+        }
+      } else if (track.type === 'bandcamp') {
+        if (track.streamUrl) {
+          container.innerHTML = `
         <div class="bandcamp-player">
           ${track.thumbnailUrl ? `<img src="${escHtml(track.thumbnailUrl)}" class="bandcamp-art">` : ''}
           <audio id="bc-audio" autoplay controls src="${escHtml(track.streamUrl)}"></audio>
         </div>`;
-      const audio = document.getElementById('bc-audio');
-      audio.addEventListener('ended', () => nextTrack());
-    } else {
-      // Fallback to iframe embed if no stream URL
-      const embedSrc = track.embedUrl || `https://bandcamp.com/EmbeddedPlayer/track=${track.id}/size=large/bgcol=222222/linkcol=1da0c3/tracklist=false/transparent=true/`;
-      container.innerHTML = `
+          const audio = document.getElementById('bc-audio');
+          audio.addEventListener('ended', () => nextTrack());
+        } else {
+          // Fallback to iframe embed if no stream URL
+          const embedSrc = track.embedUrl || `https://bandcamp.com/EmbeddedPlayer/track=${track.id}/size=large/bgcol=222222/linkcol=1da0c3/tracklist=false/transparent=true/`;
+          container.innerHTML = `
         <div class="spotify-wrapper">
           <iframe src="${escHtml(embedSrc)}"
             style="border: 0; width: 100%; height: 120px;"
             seamless>
           </iframe>
         </div>`;
-    }
-  } else if (track.type === 'spotify') {
-    if (spotifyController) {
-      spotifyController.destroy();
-      spotifyController = null;
-    }
-    container.innerHTML = `
+        }
+      } else if (track.type === 'spotify') {
+        if (spotifyController) {
+          spotifyController.destroy();
+          spotifyController = null;
+        }
+        container.innerHTML = `
       <div class="spotify-wrapper">
         <div id="spotify-embed"></div>
-        <div style="text-align:center; margin-top:20px;">
-          <button onclick="nextTrack()" style="
-            background: transparent; border: 1px solid var(--border); color: var(--text);
-            padding: 8px 20px; cursor: pointer; font-size: 13px;
-          ">Skip to Next &rarr;</button>
-          <div style="margin-top:8px; font-size:11px; color:var(--muted);">
-            Spotify previews are 30s for non-logged-in users
-          </div>
+        <div id="spotify-warning" style="text-align:center; margin-top:10px; display:none; color:var(--muted); font-size:12px;">
+            Full playback requires Spotify Premium and to be logged in on this browser.
+            Firefox (and others) disable cross-site cookies by default, you will need to enable them for this to work.
         </div>
       </div>`;
-    const uri = `spotify:${subtype}:${track.id}`;
-    if (spotifyIFrameAPI) {
-      spotifyIFrameAPI.createController(document.getElementById('spotify-embed'), {
-        uri,
-        width: '100%',
-        height: 352,
-        theme: 0,
-      }, (controller) => {
-        spotifyController = controller;
-        controller.play();
-        controller.addListener('playback_update', (e) => {
-          if (e.data.duration && e.data.position >= e.data.duration - 1) {
-            nextTrack();
-          }
-        });
-      });
-    } else {
-      // API not loaded yet — fall back to manual iframe
-      document.getElementById('spotify-embed').innerHTML = `
-        <iframe
-          src="https://open.spotify.com/embed/${subtype}/${track.id}?utm_source=generator&theme=0"
-          width="100%"
-          height="352"
-          frameBorder="0"
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-        </iframe>`;
+        const uri = `spotify:${subtype}:${track.id}`;
+        if (spotifyIFrameAPI) {
+          spotifyIFrameAPI.createController(document.getElementById('spotify-embed'), {
+            uri,
+            width: '90%',
+            height: 352,
+            theme: 0,
+          }, (controller) => {
+            spotifyController = controller;
+            controller.play();
+            controller.addListener('playback_update', (e) => {
+              if (e.data.duration > 0 && e.data.duration <= 31000) {
+                const warn = document.getElementById('spotify-warning');
+                if (warn) warn.style.display = '';
+              }
+              if (e.data.duration && e.data.position >= e.data.duration - 1) {
+                nextTrack();
+              }
+            });
+          });
+        } else {
+          // API not loaded yet — wait for it
+          spotifyPending = () => {
+            spotifyIFrameAPI.createController(document.getElementById('spotify-embed'), {
+              uri,
+              width: '90%',
+              height: 352,
+              theme: 0,
+            }, (controller) => {
+              spotifyController = controller;
+              controller.play();
+              controller.addListener('playback_update', (e) => {
+                if (e.data.duration > 0 && e.data.duration <= 31000) {
+                  const warn = document.getElementById('spotify-warning');
+                  if (warn) warn.style.display = '';
+                }
+                if (e.data.duration && e.data.position >= e.data.duration - 1) {
+                  nextTrack();
+                }
+              });
+            });
+          };
+        }
+      }
+
+      renderQueue();
+
+      // Scroll active item into view
+      setTimeout(() => {
+        const active = document.querySelector('.queue-item.active');
+        if (active) active.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
     }
-  }
 
-  renderQueue();
-
-  // Scroll active item into view
-  setTimeout(() => {
-    const active = document.querySelector('.queue-item.active');
-    if (active) active.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }, 100);
-}
-
-function toggleShuffle() {
-  shuffleEnabled = !shuffleEnabled;
-  const btn = document.getElementById('shuffleBtn');
-  btn.className = `shuffle-btn ${shuffleEnabled ? 'on' : 'off'}`;
-}
-
-function nextTrack() {
-  if (shuffleEnabled) {
-    const remaining = queue.map((_, i) => i).filter(i => i !== currentIndex);
-    if (remaining.length > 0) {
-      playTrack(remaining[Math.floor(Math.random() * remaining.length)]);
+    function toggleShuffle() {
+      shuffleEnabled = !shuffleEnabled;
+      const btn = document.getElementById('shuffleBtn');
+      btn.className = `shuffle-btn ${shuffleEnabled ? 'on' : 'off'}`;
     }
-  } else if (currentIndex < queue.length - 1) {
-    playTrack(currentIndex + 1);
-  }
-}
 
-function prevTrack() {
-  if (currentIndex > 0) {
-    playTrack(currentIndex - 1);
-  }
-}
+    function nextTrack() {
+      if (shuffleEnabled) {
+        const remaining = queue.map((_, i) => i).filter(i => i !== currentIndex);
+        if (remaining.length > 0) {
+          playTrack(remaining[Math.floor(Math.random() * remaining.length)]);
+        }
+      } else if (currentIndex < queue.length - 1) {
+        playTrack(currentIndex + 1);
+      }
+    }
 
-// Fallback: listen for YouTube postMessage state changes when IFrame API is blocked
-window.addEventListener('message', (e) => {
-  try {
-    const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
-    if (data.event === 'onStateChange' && data.info === 0) nextTrack();
-  } catch {}
-});
+    function prevTrack() {
+      if (currentIndex > 0) {
+        playTrack(currentIndex - 1);
+      }
+    }
 
-// Init
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').catch(() => {});
-}
-loadTracks();
-</script>
+    // Fallback: listen for YouTube postMessage state changes when IFrame API is blocked
+    window.addEventListener('message', (e) => {
+      try {
+        const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+        if (data.event === 'onStateChange' && data.info === 0) nextTrack();
+      } catch { }
+    });
+
+    // Attempt to resume YouTube playback when page is backgrounded/locked
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && ytPlayer && ytPlayer.playVideo) {
+        setTimeout(() => { try { ytPlayer.playVideo(); } catch { } }, 500);
+      }
+    });
+
+    // Init
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => { });
+    }
+    loadTracks();
+  </script>
 </body>
+
 </html>
