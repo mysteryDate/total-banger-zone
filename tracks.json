@@ -1,5 +1,19 @@
 [
   {
+    "type": "bandcamp",
+    "id": "nyegenyegetapes/gaingai",
+    "subtype": null,
+    "title": "Gaingai",
+    "artist": "KINACT",
+    "thumbnailUrl": "https://f4.bcbits.com/img/a0066253283_5.jpg",
+    "embedUrl": "https://bandcamp.com/EmbeddedPlayer/v=2/track=77567534/size=large/tracklist=false/artwork=small/",
+    "streamUrl": "https://t4.bcbits.com/stream/1e474c4ab369442b4060940836b7dcb4/mp3-128/77567534?p=0&ts=1775930400&t=95327dfaae84291955a6e1de81da5540b6fd6266&token=1775930400_a3dbd2c9f24e7cd1d30f26f83e775f8205d20076",
+    "user": "Pear time",
+    "postedAt": "2026-04-10T17:09:55.328000+00:00",
+    "messageId": "1492210031066615828",
+    "originalUrl": "https://nyegenyegetapes.bandcamp.com/track/gaingai"
+  },
+  {
     "type": "spotify",
     "id": "0TtxuODuyMc6DF3razrbZK",
     "subtype": "track",
