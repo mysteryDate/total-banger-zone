@@ -1,6 +1,20 @@
 [
   {
     "type": "youtube",
+    "id": "3dK78SSUPFY",
+    "subtype": null,
+    "title": "YouTube Track (3dK78SSUPFY)",
+    "artist": null,
+    "thumbnailUrl": null,
+    "embedUrl": null,
+    "streamUrl": null,
+    "user": "Scorch Abachris",
+    "postedAt": "2026-04-16T16:01:00.111000+00:00",
+    "messageId": "1494367013903007926",
+    "originalUrl": "https://youtu.be/3dK78SSUPFY?si=aKn7Eb1cqjTrg5Eh"
+  },
+  {
+    "type": "youtube",
     "id": "6bghDcbzfEU",
     "subtype": null,
     "title": "Tape 05",
