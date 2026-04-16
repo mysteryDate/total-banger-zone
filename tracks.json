@@ -1,5 +1,19 @@
 [
   {
+    "type": "youtube",
+    "id": "6rsdGjNWiIw",
+    "subtype": null,
+    "title": "Madonna - Drowned World / Substitute For Love (Official Video)",
+    "artist": "Madonna",
+    "thumbnailUrl": "https://i.ytimg.com/vi/6rsdGjNWiIw/hqdefault.jpg",
+    "embedUrl": null,
+    "streamUrl": null,
+    "user": "Chim Chim (Gibbering)",
+    "postedAt": "2026-04-16T14:05:17.720000+00:00",
+    "messageId": "1494337895404671047",
+    "originalUrl": "https://www.youtube.com/watch?v=6rsdGjNWiIw"
+  },
+  {
     "type": "spotify",
     "id": "4dc1G54hSmSL5HQuQvRNA1",
     "subtype": "track",
