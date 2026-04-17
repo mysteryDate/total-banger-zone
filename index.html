@@ -165,8 +165,8 @@
       font-size: 14px;
     }
 
-    /* Bandcamp audio player */
-    .bandcamp-player {
+    /* Native audio player (self-hosted + Bandcamp fallback) */
+    .native-player {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -176,14 +176,29 @@
       margin: auto;
     }
 
-    .bandcamp-art {
+    .player-art {
       max-width: 100%;
       max-height: 300px;
       object-fit: contain;
     }
 
-    .bandcamp-player audio {
+    .native-player audio {
       width: 100%;
+    }
+
+    .album-breadcrumb {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .album-breadcrumb a {
+      color: var(--spotify);
+      text-decoration: none;
+    }
+
+    .album-breadcrumb a:hover {
+      text-decoration: underline;
     }
 
     /* Spotify compact wrapper */
@@ -505,6 +520,7 @@
             <span id="sourceBadge" class="source-badge hidden"></span>
             <span id="postedBy" style="color:var(--muted); font-size:12px;"></span>
           </div>
+          <div id="albumBreadcrumb" class="album-breadcrumb hidden"></div>
         </div>
         <button class="btn" id="nextBtn" title="Next" onclick="nextTrack()">&#9654;&#9654;</button>
       </div>
@@ -543,7 +559,8 @@
       try {
         const res = await fetch('tracks.json');
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        queue = await res.json();
+        const allTracks = await res.json();
+        queue = allTracks.filter((t) => !t.skip);
       } catch (err) {
         console.warn('Could not load tracks.json:', err.message);
         queue = [];
@@ -619,15 +636,15 @@
       navigator.mediaSession.setActionHandler('previoustrack', () => prevTrack());
       navigator.mediaSession.setActionHandler('play', () => {
         if (keepaliveAudio) keepaliveAudio.play();
-        const bcAudio = document.getElementById('bc-audio');
-        if (bcAudio) bcAudio.play();
+        const audio = document.getElementById('main-audio');
+        if (audio) audio.play();
         else if (ytPlayer && ytPlayer.playVideo) ytPlayer.playVideo();
         else if (spotifyController) spotifyController.resume();
         navigator.mediaSession.playbackState = 'playing';
       });
       navigator.mediaSession.setActionHandler('pause', () => {
-        const bcAudio = document.getElementById('bc-audio');
-        if (bcAudio) bcAudio.pause();
+        const audio = document.getElementById('main-audio');
+        if (audio) audio.pause();
         else if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
         else if (spotifyController) spotifyController.togglePlay();
         navigator.mediaSession.playbackState = 'paused';
@@ -651,6 +668,15 @@
       badge.classList.remove('hidden');
       const postedInfo = `posted by @${track.user}` + (track.postedAt ? ` · ${formatDate(track.postedAt)}` : '');
       document.getElementById('postedBy').textContent = postedInfo;
+
+      // Show album breadcrumb if this track was resolved from an album/playlist
+      const breadcrumb = document.getElementById('albumBreadcrumb');
+      if (track.albumUrl && track.albumTitle) {
+        breadcrumb.innerHTML = `from <a href="${escHtml(track.albumUrl)}" target="_blank" rel="noopener">${escHtml(track.albumTitle)}</a>`;
+        breadcrumb.classList.remove('hidden');
+      } else {
+        breadcrumb.classList.add('hidden');
+      }
       updateMediaSession(track);
 
       // Build embed
@@ -665,7 +691,15 @@
         ytPlayer = null;
       }
 
-      if (track.type === 'youtube') {
+      // Self-hosted audio path — native <audio> for any track with a downloaded file
+      if (track.audioUrl) {
+        container.innerHTML = `
+        <div class="native-player">
+          ${track.thumbnailUrl ? `<img src="${escHtml(track.thumbnailUrl)}" class="player-art">` : ''}
+          <audio id="main-audio" autoplay controls src="${escHtml(track.audioUrl)}"></audio>
+        </div>`;
+        document.getElementById('main-audio').addEventListener('ended', () => nextTrack());
+      } else if (track.type === 'youtube') {
         if (typeof YT !== 'undefined' && YT.Player) {
           container.innerHTML = `<div id="yt-player"></div>`;
           const createYTPlayer = () => {
@@ -693,12 +727,11 @@
       } else if (track.type === 'bandcamp') {
         if (track.streamUrl) {
           container.innerHTML = `
-        <div class="bandcamp-player">
-          ${track.thumbnailUrl ? `<img src="${escHtml(track.thumbnailUrl)}" class="bandcamp-art">` : ''}
-          <audio id="bc-audio" autoplay controls src="${escHtml(track.streamUrl)}"></audio>
+        <div class="native-player">
+          ${track.thumbnailUrl ? `<img src="${escHtml(track.thumbnailUrl)}" class="player-art">` : ''}
+          <audio id="main-audio" autoplay controls src="${escHtml(track.streamUrl)}"></audio>
         </div>`;
-          const audio = document.getElementById('bc-audio');
-          audio.addEventListener('ended', () => nextTrack());
+          document.getElementById('main-audio').addEventListener('ended', () => nextTrack());
         } else {
           // Fallback to iframe embed if no stream URL
           const embedSrc = track.embedUrl || `https://bandcamp.com/EmbeddedPlayer/track=${track.id}/size=large/bgcol=222222/linkcol=1da0c3/tracklist=false/transparent=true/`;

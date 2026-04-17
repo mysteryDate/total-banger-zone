@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { fetchAllMessages, fetchMemberNick } from './discord.mjs';
 import { extractLinks } from './extractors.mjs';
 import { fetchMetadata } from './metadata.mjs';
+import { hasSpotifyCredentials, getMostPopularAlbumTrack, getMostPopularPlaylistTrack } from './spotify.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const STATE_PATH = resolve(__dirname, 'state.json');
@@ -88,6 +89,7 @@ async function main() {
         thumbnailUrl: meta.thumbnailUrl,
         embedUrl: meta.embedUrl || null,
         streamUrl: meta.streamUrl || null,
+        audioUrl: null,
         user,
         postedAt: msg.timestamp,
         messageId: msg.id,
@@ -100,6 +102,48 @@ async function main() {
   }
 
   console.log(`New tracks found: ${newTracks.length}`);
+
+  // Auto-resolve Spotify albums/playlists to their most popular track
+  if (hasSpotifyCredentials()) {
+    for (const track of newTracks) {
+      if (track.type !== 'spotify') continue;
+      const isAlbum = track.subtype === 'album';
+      const isPlaylist = track.subtype === 'playlist';
+      if (!isAlbum && !isPlaylist) continue;
+
+      try {
+        const result = isAlbum
+          ? await getMostPopularAlbumTrack(track.id)
+          : await getMostPopularPlaylistTrack(track.id);
+
+        if (result) {
+          console.log(`  Resolved ${track.subtype} "${track.title}" → "${result.title}"`);
+          // Remove old key, add new one
+          existingKeys.delete(`spotify:${track.id}`);
+          track.albumUrl = result.albumUrl;
+          track.albumTitle = result.albumTitle;
+          track.id = result.trackId;
+          track.subtype = 'track';
+          track.originalUrl = `https://open.spotify.com/track/${result.trackId}`;
+          // Re-fetch metadata for the resolved track
+          const meta = await fetchMetadata('spotify', result.trackId, 'track');
+          track.title = meta.title;
+          track.thumbnailUrl = meta.thumbnailUrl;
+          existingKeys.add(`spotify:${track.id}`);
+        }
+      } catch (err) {
+        console.warn(`  Could not resolve ${track.subtype} "${track.title}": ${err.message}`);
+        // Leave as-is — will play via Spotify embed fallback
+      }
+    }
+  } else {
+    const unresolvedCount = newTracks.filter(
+      (t) => t.type === 'spotify' && (t.subtype === 'album' || t.subtype === 'playlist')
+    ).length;
+    if (unresolvedCount > 0) {
+      console.log(`  ${unresolvedCount} album/playlist entries skipped (no Spotify API credentials)`);
+    }
+  }
 
   // Merge and sort (most recent first)
   const allTracks = [...existingTracks, ...newTracks].sort(
