@@ -15,7 +15,7 @@ git pull --rebase --quiet
 # Exit early if no tracks need downloading
 node -e "
   const t = JSON.parse(require('fs').readFileSync('tracks.json','utf8'));
-  const pending = t.filter(x => !x.audioUrl && !x.downloadError && x.subtype !== 'album' && x.subtype !== 'playlist');
+  const pending = t.filter(x => !x.audioUrl && !x.downloadError && !x.skip && x.subtype !== 'album' && x.subtype !== 'playlist');
   if (pending.length === 0) process.exit(1);
   console.log(pending.length + ' tracks pending download');
 " || exit 0
