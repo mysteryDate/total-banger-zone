@@ -7,6 +7,8 @@
 
 set -euo pipefail
 
+echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] cron tick"
+
 REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$REPO_DIR"
 
