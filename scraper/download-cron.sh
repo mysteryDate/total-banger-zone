@@ -7,6 +7,11 @@
 
 set -euo pipefail
 
+# Cron runs with a minimal PATH — load nvm and add user-local tool dirs
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+export PATH="$HOME/.local/bin:$PATH"
+
 echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] cron tick"
 
 REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
