@@ -105,6 +105,34 @@
       text-transform: uppercase;
     }
 
+    .collapse-toggle {
+      background: transparent;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0;
+      font: inherit;
+    }
+
+    .collapse-toggle:hover .chevron {
+      color: var(--text);
+    }
+
+    .chevron {
+      width: 16px;
+      height: 16px;
+      color: var(--muted);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .app.collapsed .chevron {
+      transform: rotate(-90deg);
+    }
+
     .shuffle-btn {
       background: transparent;
       border: none;
@@ -425,6 +453,16 @@
       display: none !important;
     }
 
+    /* Collapsed state — hide art, let queue take more space */
+    .app.collapsed .player-art {
+      display: none;
+    }
+
+    .app.collapsed .embed-container {
+      flex: 0 0 auto;
+      min-height: 0;
+    }
+
     /* Mobile layout */
     @media (max-width: 768px) {
 
@@ -453,6 +491,14 @@
         border-bottom: 1px solid var(--border);
         order: 1;
         max-height: 50vh;
+      }
+
+      .app.collapsed .sidebar {
+        max-height: none;
+      }
+
+      .app.collapsed .embed-container {
+        min-height: 0;
       }
 
       .player-area {
@@ -489,7 +535,13 @@
 
     <div class="sidebar">
       <div class="sidebar-header">
-        <div class="sidebar-title">Queue</div>
+        <button class="collapse-toggle" onclick="toggleCollapsed()" aria-label="Toggle player art">
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+          <div class="sidebar-title">Queue</div>
+        </button>
         <div class="queue-count" id="queueCount">0 tracks</div>
       </div>
 
@@ -502,7 +554,13 @@
 
     <div class="player-area">
       <div class="now-playing-row">
-        <div class="now-playing-label">Now Playing</div>
+        <button class="collapse-toggle" onclick="toggleCollapsed()" aria-label="Toggle player art">
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+          <div class="now-playing-label">Now Playing</div>
+        </button>
         <button class="shuffle-btn off" id="shuffleBtn" title="Shuffle" onclick="toggleShuffle()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
             stroke-linejoin="round">
@@ -870,6 +928,10 @@
       shuffleEnabled = !shuffleEnabled;
       const btn = document.getElementById('shuffleBtn');
       btn.className = `shuffle-btn ${shuffleEnabled ? 'on' : 'off'}`;
+    }
+
+    function toggleCollapsed() {
+      document.querySelector('.app').classList.toggle('collapsed');
     }
 
     function nextTrack() {
