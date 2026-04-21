@@ -662,6 +662,44 @@
       navigator.mediaSession.playbackState = 'playing';
     }
 
+    const SEEK_STEP_SECONDS = 10;
+
+    function updateMediaSessionPositionState() {
+      if (!('mediaSession' in navigator) || !navigator.mediaSession.setPositionState) return;
+      const audio = document.getElementById('main-audio');
+      if (!audio || !isFinite(audio.duration) || audio.duration <= 0) return;
+      navigator.mediaSession.setPositionState({
+        duration: audio.duration,
+        playbackRate: audio.playbackRate || 1,
+        position: Math.min(audio.currentTime, audio.duration),
+      });
+    }
+
+    function attachAudioToMediaSession(audio) {
+      if (!('mediaSession' in navigator)) return;
+      navigator.mediaSession.setActionHandler('seekto', (details) => {
+        if (details.seekTime == null) return;
+        if (details.fastSeek && 'fastSeek' in audio) audio.fastSeek(details.seekTime);
+        else audio.currentTime = details.seekTime;
+        updateMediaSessionPositionState();
+      });
+      navigator.mediaSession.setActionHandler('seekbackward', (details) => {
+        audio.currentTime = Math.max(0, audio.currentTime - (details.seekOffset || SEEK_STEP_SECONDS));
+        updateMediaSessionPositionState();
+      });
+      navigator.mediaSession.setActionHandler('seekforward', (details) => {
+        const max = isFinite(audio.duration) ? audio.duration : Infinity;
+        audio.currentTime = Math.min(max, audio.currentTime + (details.seekOffset || SEEK_STEP_SECONDS));
+        updateMediaSessionPositionState();
+      });
+      audio.addEventListener('loadedmetadata', updateMediaSessionPositionState);
+      audio.addEventListener('durationchange', updateMediaSessionPositionState);
+      audio.addEventListener('timeupdate', updateMediaSessionPositionState);
+      audio.addEventListener('ratechange', updateMediaSessionPositionState);
+      audio.addEventListener('play', () => { navigator.mediaSession.playbackState = 'playing'; });
+      audio.addEventListener('pause', () => { navigator.mediaSession.playbackState = 'paused'; });
+    }
+
     // ── Playback ──
     function playTrack(index) {
       if (index < 0 || index >= queue.length) return;
@@ -712,7 +750,9 @@
           ${track.thumbnailUrl ? `<img src="${escHtml(track.thumbnailUrl)}" class="player-art">` : ''}
           <audio id="main-audio" autoplay controls src="${escHtml(track.audioUrl)}"></audio>
         </div>`;
-        document.getElementById('main-audio').addEventListener('ended', () => nextTrack());
+        const mainAudio = document.getElementById('main-audio');
+        mainAudio.addEventListener('ended', () => nextTrack());
+        attachAudioToMediaSession(mainAudio);
       } else if (track.type === 'youtube') {
         if (typeof YT !== 'undefined' && YT.Player) {
           container.innerHTML = `<div id="yt-player"></div>`;
@@ -745,7 +785,9 @@
           ${track.thumbnailUrl ? `<img src="${escHtml(track.thumbnailUrl)}" class="player-art">` : ''}
           <audio id="main-audio" autoplay controls src="${escHtml(track.streamUrl)}"></audio>
         </div>`;
-          document.getElementById('main-audio').addEventListener('ended', () => nextTrack());
+          const bcAudio = document.getElementById('main-audio');
+          bcAudio.addEventListener('ended', () => nextTrack());
+          attachAudioToMediaSession(bcAudio);
         } else {
           // Fallback to iframe embed if no stream URL
           const embedSrc = track.embedUrl || `https://bandcamp.com/EmbeddedPlayer/track=${track.id}/size=large/bgcol=222222/linkcol=1da0c3/tracklist=false/transparent=true/`;
