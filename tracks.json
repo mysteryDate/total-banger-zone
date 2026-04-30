@@ -1,5 +1,20 @@
 [
   {
+    "type": "bandcamp",
+    "id": "marylattimoreharpist/stardust",
+    "subtype": null,
+    "title": "Stardust",
+    "artist": "Mary Lattimore &amp; Julianna Barwick",
+    "thumbnailUrl": "https://f4.bcbits.com/img/a1940337204_5.jpg",
+    "embedUrl": "https://bandcamp.com/EmbeddedPlayer/v=2/track=3441405914/size=large/tracklist=false/artwork=small/",
+    "streamUrl": "https://t4.bcbits.com/stream/75d3478ddd490e1873115a79849ddd7b/mp3-128/3441405914?p=0&ts=1777649246&t=58caba5ec5e87455f6f732f9bcfa10873527a874&token=1777649246_6809384d74d8aa3315a001ae849ea61cacfdccfd",
+    "audioUrl": null,
+    "user": "christicular tortion",
+    "postedAt": "2026-04-30T13:31:09.954000+00:00",
+    "messageId": "1499402736570208407",
+    "originalUrl": "https://marylattimoreharpist.bandcamp.com/track/stardust"
+  },
+  {
     "type": "youtube",
     "id": "t_wVB6fq4Gc",
     "subtype": null,
