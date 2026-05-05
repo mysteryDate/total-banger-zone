@@ -1,5 +1,20 @@
 [
   {
+    "type": "bandcamp",
+    "id": "moss-ok/tequila",
+    "subtype": null,
+    "title": "TEQUILA",
+    "artist": "SPONGEBOB SEXTAPE",
+    "thumbnailUrl": "https://f4.bcbits.com/img/a1503392553_5.jpg",
+    "embedUrl": "https://bandcamp.com/EmbeddedPlayer/v=2/track=4244620813/size=large/tracklist=false/artwork=small/",
+    "streamUrl": "https://t4.bcbits.com/stream/701b0b204fb774c08ca9fd278de7064c/mp3-128/4244620813?p=0&ts=1778089637&t=7fde9fa048fab12ace0595a64c2e62ce73ed2b91&token=1778089637_ac9077f927150be23d7b6a6321122209cdd13836",
+    "audioUrl": null,
+    "user": "Dr Psyence",
+    "postedAt": "2026-05-05T14:49:03.392000+00:00",
+    "messageId": "1501234277717643434",
+    "originalUrl": "https://moss-ok.bandcamp.com/track/tequila"
+  },
+  {
     "type": "youtube",
     "id": "2Qs1J612nZs",
     "subtype": null,
