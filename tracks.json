@@ -1,5 +1,20 @@
 [
   {
+    "type": "spotify",
+    "id": "1PLrBVxHRaJWGDLsTRQaHK",
+    "subtype": "playlist",
+    "title": "ABBA deep cuts",
+    "artist": null,
+    "thumbnailUrl": "https://mosaic.scdn.co/300/ab67616d00001e0242678f54dfd1d5afb3eea19aab67616d00001e025ca4eeb638139fd840250b9eab67616d00001e02dca40205d34a5975ef2f04acab67616d00001e02e47ce0362dd11917fb8307f1",
+    "embedUrl": null,
+    "streamUrl": null,
+    "audioUrl": null,
+    "user": "her dank materials",
+    "postedAt": "2026-05-20T18:52:07.184000+00:00",
+    "messageId": "1506731264559026297",
+    "originalUrl": "https://open.spotify.com/playlist/1PLrBVxHRaJWGDLsTRQaHK?si=upq7BMcASvOiHJP7bEbT9Q&pi=R3bEYmLwT2iGh"
+  },
+  {
     "type": "youtube",
     "id": "BrkCMvGpf38",
     "subtype": null,
