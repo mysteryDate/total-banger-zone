@@ -1,6 +1,21 @@
 [
   {
     "type": "youtube",
+    "id": "VEM1wayCOjI",
+    "subtype": null,
+    "title": "Velvet Underground - Sister Ray (Boston 15/3/69)",
+    "artist": "jonvalinski",
+    "thumbnailUrl": "https://i.ytimg.com/vi/VEM1wayCOjI/hqdefault.jpg",
+    "embedUrl": null,
+    "streamUrl": null,
+    "audioUrl": null,
+    "user": "Dr Psyence",
+    "postedAt": "2026-05-23T16:48:16.317000+00:00",
+    "messageId": "1507787260840644641",
+    "originalUrl": "https://youtu.be/VEM1wayCOjI"
+  },
+  {
+    "type": "youtube",
     "id": "vVEZNvqecdE",
     "subtype": null,
     "title": "All My Friends",
