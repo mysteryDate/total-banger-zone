@@ -1,6 +1,21 @@
 [
   {
     "type": "youtube",
+    "id": "vVEZNvqecdE",
+    "subtype": null,
+    "title": "All My Friends",
+    "artist": "LCD Soundsystem - Topic",
+    "thumbnailUrl": "https://i.ytimg.com/vi/vVEZNvqecdE/hqdefault.jpg",
+    "embedUrl": null,
+    "streamUrl": null,
+    "audioUrl": null,
+    "user": "Dr Psyence",
+    "postedAt": "2026-05-23T00:11:23.195000+00:00",
+    "messageId": "1507536386423787681",
+    "originalUrl": "https://youtu.be/vVEZNvqecdE?si=DNKYiAE3ZheLpQlD"
+  },
+  {
+    "type": "youtube",
     "id": "hBVJl7uAIgk",
     "subtype": null,
     "title": "Weedian Plays Dopesmoker Solo",
