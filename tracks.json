@@ -8,7 +8,7 @@
     "thumbnailUrl": "https://i.ytimg.com/vi/6PDRRtCHtJM/hqdefault.jpg",
     "embedUrl": null,
     "streamUrl": null,
-    "audioUrl": null,
+    "audioUrl": "https://audio.totalbangerzone.com/youtube/6PDRRtCHtJM.mp3",
     "user": "her dank materials",
     "postedAt": "2026-06-01T18:26:43.295000+00:00",
     "messageId": "1511073527292235868",
@@ -23,7 +23,7 @@
     "thumbnailUrl": "https://i.ytimg.com/vi/dDAPROZ1aik/hqdefault.jpg",
     "embedUrl": null,
     "streamUrl": null,
-    "audioUrl": null,
+    "audioUrl": "https://audio.totalbangerzone.com/youtube/dDAPROZ1aik.mp3",
     "user": "Chim Chim (Gibbering)",
     "postedAt": "2026-06-01T17:41:45.008000+00:00",
     "messageId": "1511062209856536628",
@@ -42,7 +42,8 @@
     "user": "Your French Canadian Nightmare",
     "postedAt": "2026-06-01T17:09:20.027000+00:00",
     "messageId": "1511054052014821456",
-    "originalUrl": "https://www.youtube.com/watch?v=lSQ-6xU8mPA"
+    "originalUrl": "https://www.youtube.com/watch?v=lSQ-6xU8mPA",
+    "downloadError": "ERROR: [youtube] lSQ-6xU8mPA: Video unavailable. This video is restricted. Please check the Google Workspace administrator and/or the network administrator restrictions.\n"
   },
   {
     "type": "youtube",
