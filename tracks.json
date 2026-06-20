@@ -12,7 +12,8 @@
     "user": "her dank materials",
     "postedAt": "2026-06-20T12:26:56.499000+00:00",
     "messageId": "1517868355154083952",
-    "originalUrl": "https://youtu.be/1JuC7CTO1Bk?si=DFG7EAZ2wG-6_hX7"
+    "originalUrl": "https://youtu.be/1JuC7CTO1Bk?si=DFG7EAZ2wG-6_hX7",
+    "downloadError": "ERROR: unable to download video data: HTTP Error 403: Forbidden\n"
   },
   {
     "type": "youtube",
