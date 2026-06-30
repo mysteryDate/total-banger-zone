@@ -1,6 +1,36 @@
 [
   {
     "type": "youtube",
+    "id": "hSoU0TMTGwQ",
+    "subtype": null,
+    "title": "Youth Lagoon - Afternoon (Official Audio)",
+    "artist": "Youth Lagoon",
+    "thumbnailUrl": "https://i.ytimg.com/vi/hSoU0TMTGwQ/hqdefault.jpg",
+    "embedUrl": null,
+    "streamUrl": null,
+    "audioUrl": null,
+    "user": "the real jason funderburker",
+    "postedAt": "2026-06-30T13:33:36.151000+00:00",
+    "messageId": "1521509009566335028",
+    "originalUrl": "https://www.youtube.com/watch?v=hSoU0TMTGwQ&list=RDhSoU0TMTGwQ&start_radio=1"
+  },
+  {
+    "type": "youtube",
+    "id": "2Dyf36E-YYU",
+    "subtype": null,
+    "title": "Emily A. Sprague - Sing To [Official Video]",
+    "artist": "Emily A. Sprague",
+    "thumbnailUrl": "https://i.ytimg.com/vi/2Dyf36E-YYU/hqdefault.jpg",
+    "embedUrl": null,
+    "streamUrl": null,
+    "audioUrl": null,
+    "user": "the real jason funderburker",
+    "postedAt": "2026-06-30T13:31:49.420000+00:00",
+    "messageId": "1521508561904210000",
+    "originalUrl": "https://www.youtube.com/watch?v=2Dyf36E-YYU&list=RD2Dyf36E-YYU&start_radio=1"
+  },
+  {
+    "type": "youtube",
     "id": "6zXPcTi9neQ",
     "subtype": null,
     "title": "Malcolm McLaren - Madame Butterfly (1984 12\" Single) - Technics 1200G / Audio Technica ART9XI",
