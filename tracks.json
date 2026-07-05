@@ -12,7 +12,8 @@
     "user": "the real jason funderburker",
     "postedAt": "2026-07-03T18:59:45.141000+00:00",
     "messageId": "1522678251456037005",
-    "originalUrl": "https://www.youtube.com/watch?v=Q61q458T92w&list=RDQ61q458T92w&start_radio=1"
+    "originalUrl": "https://www.youtube.com/watch?v=Q61q458T92w&list=RDQ61q458T92w&start_radio=1",
+    "downloadError": "ERROR: \r[download] Got error: [Errno 111] Connection refused. Giving up after 10 retries\n"
   },
   {
     "type": "youtube",
