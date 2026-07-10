@@ -1,5 +1,20 @@
 [
   {
+    "type": "bandcamp",
+    "id": "bigbrave/of-this-ilk",
+    "subtype": null,
+    "title": "Of This Ilk",
+    "artist": "BIG BRAVE",
+    "thumbnailUrl": "https://f4.bcbits.com/img/a3761114486_5.jpg",
+    "embedUrl": "https://bandcamp.com/EmbeddedPlayer/v=2/track=2117028332/size=large/tracklist=false/artwork=small/",
+    "streamUrl": "https://t4.bcbits.com/stream/e4591f2423ee4da5afc5b00a5d2564c7/mp3-128/2117028332?p=0&ts=1783786766&t=05b62a59f89fb865cab61c9ddf803e6a7344c4d1&token=1783786766_84759fed29cc8c766f8d8ae215a5eef5891a639e",
+    "audioUrl": null,
+    "user": "christicular tortion :older_man:",
+    "postedAt": "2026-07-10T14:28:23.982000+00:00",
+    "messageId": "1525146678384922645",
+    "originalUrl": "https://bigbrave.bandcamp.com/track/of-this-ilk"
+  },
+  {
     "type": "youtube",
     "id": "bsj2xYhz5sY",
     "subtype": null,
