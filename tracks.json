@@ -1,6 +1,21 @@
 [
   {
     "type": "bandcamp",
+    "id": "dandeacon/snookered",
+    "subtype": null,
+    "title": "Snookered",
+    "artist": "Dan Deacon",
+    "thumbnailUrl": "https://f4.bcbits.com/img/a3239912307_5.jpg",
+    "embedUrl": "https://bandcamp.com/EmbeddedPlayer/v=2/track=545731423/size=large/tracklist=false/artwork=small/",
+    "streamUrl": "https://t4.bcbits.com/stream/8db8fb6c3e1ebddb0938bb76b9d32edd/mp3-128/545731423?p=0&ts=1783972098&t=3bdfe021ae50bd001fd8dd277ec203fc10b7bef7&token=1783972098_e28005c5c81925791e32ea8c306be1fe4d1e32fe",
+    "audioUrl": null,
+    "user": "Major Tom(foolery) (Kev)",
+    "postedAt": "2026-07-12T18:55:17.981000+00:00",
+    "messageId": "1525938621696446474",
+    "originalUrl": "https://dandeacon.bandcamp.com/track/snookered"
+  },
+  {
+    "type": "bandcamp",
     "id": "bigbrave/of-this-ilk",
     "subtype": null,
     "title": "Of This Ilk",
