@@ -1,5 +1,20 @@
 [
   {
+    "type": "bandcamp",
+    "id": "djrum/waxcap",
+    "subtype": null,
+    "title": "Waxcap",
+    "artist": "Djrum",
+    "thumbnailUrl": "https://f4.bcbits.com/img/a2923081343_5.jpg",
+    "embedUrl": "https://bandcamp.com/EmbeddedPlayer/v=2/track=4040167558/size=large/tracklist=false/artwork=small/",
+    "streamUrl": "https://t4.bcbits.com/stream/7ea53e8d84d634494536e8f345dac4a5/mp3-128/4040167558?p=0&ts=1784742667&t=8cc27f5b99a9bd133d13d6382706dfde534422cb&token=1784742667_1dc3f0255afc48c4d7258e37ee77d88915d1b32c",
+    "audioUrl": null,
+    "user": "christicular tortion :older_man:",
+    "postedAt": "2026-07-21T17:26:01.577000+00:00",
+    "messageId": "1529177646099988510",
+    "originalUrl": "https://djrum.bandcamp.com/track/waxcap"
+  },
+  {
     "type": "youtube",
     "id": "wet2Kla6c9c",
     "subtype": null,
