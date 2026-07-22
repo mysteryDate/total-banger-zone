@@ -1,5 +1,20 @@
 [
   {
+    "type": "youtube",
+    "id": "TFaaOcmRzsg",
+    "subtype": null,
+    "title": "Blue Waters | Horii Katsumi Project",
+    "artist": "Anthony cris",
+    "thumbnailUrl": "https://i.ytimg.com/vi/TFaaOcmRzsg/hqdefault.jpg",
+    "embedUrl": null,
+    "streamUrl": null,
+    "audioUrl": null,
+    "user": "Chim Chim (Gibbering)",
+    "postedAt": "2026-07-22T15:18:41.631000+00:00",
+    "messageId": "1529507989709394160",
+    "originalUrl": "https://www.youtube.com/watch?v=TFaaOcmRzsg"
+  },
+  {
     "type": "bandcamp",
     "id": "djrum/waxcap",
     "subtype": null,
