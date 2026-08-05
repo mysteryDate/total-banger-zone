@@ -1,5 +1,20 @@
 [
   {
+    "type": "bandcamp",
+    "id": "gardencentre/sorry-feeling-heart-3",
+    "subtype": null,
+    "title": "Sorry Feeling Heart",
+    "artist": "Garden Centre",
+    "thumbnailUrl": "https://f4.bcbits.com/img/a4281529247_5.jpg",
+    "embedUrl": "https://bandcamp.com/EmbeddedPlayer/v=2/track=44171442/size=large/tracklist=false/artwork=small/",
+    "streamUrl": "https://t4.bcbits.com/stream/9f91ba223ca17df90a57b93d8b4bd8bb/mp3-128/44171442?p=0&ts=1786048492&t=4ac574eb75a20f980462062f3eeea564928991bf&token=1786048492_f9058fba2cef388b8dc0edcd9d3aa959f1ede373",
+    "audioUrl": null,
+    "user": "christicular tortion :older_man:",
+    "postedAt": "2026-08-05T19:44:26.311000+00:00",
+    "messageId": "1534648296662892544",
+    "originalUrl": "https://gardencentre.bandcamp.com/track/sorry-feeling-heart-3"
+  },
+  {
     "type": "youtube",
     "id": "gHXjJiqFx3E",
     "subtype": null,
