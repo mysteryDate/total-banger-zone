@@ -1,5 +1,35 @@
 [
   {
+    "type": "youtube",
+    "id": "oFVvHWmlmvk",
+    "subtype": null,
+    "title": "Jean Francois Breau - Du Plaisir (Clip bonus do DVD Don Juan de Felix Gray)",
+    "artist": "Gipsy&Flamenco",
+    "thumbnailUrl": "https://i.ytimg.com/vi/oFVvHWmlmvk/hqdefault.jpg",
+    "embedUrl": null,
+    "streamUrl": null,
+    "audioUrl": null,
+    "user": "her dank materials",
+    "postedAt": "2026-08-12T15:20:20.676000+00:00",
+    "messageId": "1537118550311968858",
+    "originalUrl": "https://youtu.be/oFVvHWmlmvk"
+  },
+  {
+    "type": "youtube",
+    "id": "KiUa_4cSd6Y",
+    "subtype": null,
+    "title": "Loin loin de la ville",
+    "artist": "Boule Noire - Topic",
+    "thumbnailUrl": "https://i.ytimg.com/vi/KiUa_4cSd6Y/hqdefault.jpg",
+    "embedUrl": null,
+    "streamUrl": null,
+    "audioUrl": null,
+    "user": "her dank materials",
+    "postedAt": "2026-08-12T15:19:49.217000+00:00",
+    "messageId": "1537118418363351132",
+    "originalUrl": "https://youtu.be/KiUa_4cSd6Y"
+  },
+  {
     "type": "bandcamp",
     "id": "gardencentre/sorry-feeling-heart-3",
     "subtype": null,
