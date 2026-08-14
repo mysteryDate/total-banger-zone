@@ -1,5 +1,20 @@
 [
   {
+    "type": "youtube",
+    "id": "bL0C1xpGgUE",
+    "subtype": null,
+    "title": "rich",
+    "artist": "bbymutha - Topic",
+    "thumbnailUrl": "https://i.ytimg.com/vi/bL0C1xpGgUE/hqdefault.jpg",
+    "embedUrl": null,
+    "streamUrl": null,
+    "audioUrl": null,
+    "user": "Sleepiest",
+    "postedAt": "2026-08-14T01:12:18.628000+00:00",
+    "messageId": "1537629911265845259",
+    "originalUrl": "https://music.youtube.com/watch?v=bL0C1xpGgUE&si=-BiaCnn8sRSC_moF"
+  },
+  {
     "type": "spotify",
     "id": "263r4YILoQEGz9RzW5X9M6",
     "subtype": "track",
