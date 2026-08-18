@@ -1,5 +1,20 @@
 [
   {
+    "type": "bandcamp",
+    "id": "brokensocialscene/anthems-for-a-seventeen-year-old-girl",
+    "subtype": null,
+    "title": "Anthems For A Seventeen-Year Old Girl",
+    "artist": "Broken Social Scene",
+    "thumbnailUrl": "https://f4.bcbits.com/img/a1655571252_5.jpg",
+    "embedUrl": "https://bandcamp.com/EmbeddedPlayer/v=2/track=386091169/size=large/tracklist=false/artwork=small/",
+    "streamUrl": "https://t4.bcbits.com/stream/82956655cc746d9320d422c843b32cc9/mp3-128/386091169?p=0&ts=1787161884&t=b0cbe9a4f0903dd69abb5faffb0e5ad5fe17c5d3&token=1787161884_7b5890ac8a174431ae0b439fc88db74593af1d99",
+    "audioUrl": null,
+    "user": "christicular tortion :older_man:",
+    "postedAt": "2026-08-18T17:40:24.426000+00:00",
+    "messageId": "1539328125387935744",
+    "originalUrl": "https://brokensocialscene.bandcamp.com/track/anthems-for-a-seventeen-year-old-girl"
+  },
+  {
     "type": "youtube",
     "id": "HuMWuuf1hns",
     "subtype": null,
