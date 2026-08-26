@@ -1,5 +1,20 @@
 [
   {
+    "type": "bandcamp",
+    "id": "boredlord/the-feeling",
+    "subtype": null,
+    "title": "The Feeling",
+    "artist": "Darlynn",
+    "thumbnailUrl": "https://f4.bcbits.com/img/a2368468893_5.jpg",
+    "embedUrl": "https://bandcamp.com/EmbeddedPlayer/v=2/track=1794893474/size=large/tracklist=false/artwork=small/",
+    "streamUrl": "https://t4.bcbits.com/stream/0f0855ab6c2c6b2022e321ee7b8b14ff/mp3-128/1794893474?p=0&ts=1787874942&t=d32b075d8749254fb8a2edaa9f81c85d77e1f0bf&token=1787874942_c2097e004649a164e6b9fefe68a7f6d55af95202",
+    "audioUrl": null,
+    "user": "christicular torsion",
+    "postedAt": "2026-08-26T21:15:06.420000+00:00",
+    "messageId": "1542281259311697941",
+    "originalUrl": "https://boredlord.bandcamp.com/track/the-feeling"
+  },
+  {
     "type": "youtube",
     "id": "JWoYy4Ah81s",
     "subtype": null,
