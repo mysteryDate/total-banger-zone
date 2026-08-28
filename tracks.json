@@ -1,5 +1,20 @@
 [
   {
+    "type": "youtube",
+    "id": "uyk9rt-ZUSQ",
+    "subtype": null,
+    "title": "Y Control",
+    "artist": "Yeah Yeah Yeahs - Topic",
+    "thumbnailUrl": "https://i.ytimg.com/vi/uyk9rt-ZUSQ/hqdefault.jpg",
+    "embedUrl": null,
+    "streamUrl": null,
+    "audioUrl": null,
+    "user": "christicular torsion",
+    "postedAt": "2026-08-27T20:47:33.878000+00:00",
+    "messageId": "1542636715913646200",
+    "originalUrl": "https://youtu.be/uyk9rt-ZUSQ"
+  },
+  {
     "type": "bandcamp",
     "id": "boredlord/the-feeling",
     "subtype": null,
