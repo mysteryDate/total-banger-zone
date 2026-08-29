@@ -1,5 +1,20 @@
 [
   {
+    "type": "spotify",
+    "id": "66ZcOcouenzZEnzTJvoFmH",
+    "subtype": "track",
+    "title": "The Sweet Escape",
+    "artist": null,
+    "thumbnailUrl": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e028dd53da15b55d402dfc3a20e",
+    "embedUrl": null,
+    "streamUrl": null,
+    "audioUrl": null,
+    "user": "profiled! by the yeast police",
+    "postedAt": "2026-08-28T23:53:08.121000+00:00",
+    "messageId": "1543045804179066941",
+    "originalUrl": "https://open.spotify.com/track/66ZcOcouenzZEnzTJvoFmH?si=q_jjAo9lSLmJsEJ5jDsxLw&utm_source=copy-link"
+  },
+  {
     "type": "youtube",
     "id": "RxqOeqC3Ht8",
     "subtype": null,
