@@ -18,6 +18,7 @@ See [scraper/](scraper/) — scrapes Discord for music links, downloads audio vi
 
 - `npm run scrape` — fetch new Discord posts (runs in GitHub Actions every 15min)
 - `npm run download` — download audio for tracks missing `audioUrl`. Add `--retry` to retry previously failed tracks
+- `npm run remove -- <type>:<id>` — pull a track: deletes its R2 audio, drops it from `tracks.json`, and adds the key to `scraper/blocklist.json` so a full backfill won't re-add it
 
 System deps: `yt-dlp` and `ffmpeg`. Downloads must run from a residential IP; YouTube 403s datacenter ranges, which is why this is not a GitHub Actions job.
 

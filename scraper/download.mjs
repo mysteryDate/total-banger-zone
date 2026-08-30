@@ -4,7 +4,8 @@ import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFile as execFileCb } from 'node:child_process';
 import { promisify } from 'node:util';
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import { PutObjectCommand } from '@aws-sdk/client-s3';
+import { createR2Client, audioObjectKey, R2_BUCKET } from './r2.mjs';
 import { getTrackInfo } from './spotify.mjs';
 
 const execFile = promisify(execFileCb);
@@ -14,30 +15,8 @@ const TRACKS_PATH = resolve(__dirname, '..', 'tracks.json');
 const TMP_DIR = resolve(__dirname, '..', 'tmp-audio');
 
 const AUDIO_BASE_URL = process.env.AUDIO_BASE_URL; // e.g. https://audio.totalbangerzone.com
-const R2_BUCKET = process.env.R2_BUCKET || 'tbz-audio';
 const DOWNLOAD_DELAY_MS = 4000;
 const AUDIO_QUALITY = '192k';
-
-function createR2Client() {
-  const accountId = process.env.R2_ACCOUNT_ID;
-  const accessKeyId = process.env.R2_ACCESS_KEY_ID;
-  const secretAccessKey = process.env.R2_SECRET_ACCESS_KEY;
-
-  if (!accountId || !accessKeyId || !secretAccessKey) {
-    throw new Error('Missing R2 credentials in environment (R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY)');
-  }
-
-  return new S3Client({
-    region: 'auto',
-    endpoint: `https://${accountId}.r2.cloudflarestorage.com`,
-    credentials: { accessKeyId, secretAccessKey },
-  });
-}
-
-/** Convert bandcamp ID (artist/track) to a safe filename */
-function safeFilename(type, id) {
-  return `${type}/${id.replace(/\//g, '-')}.mp3`;
-}
 
 function originalUrl(track) {
   if (track.originalUrl) return track.originalUrl;
@@ -140,7 +119,7 @@ async function main() {
   let failed = 0;
 
   for (const track of pending) {
-    const r2Key = safeFilename(track.type, track.id);
+    const r2Key = audioObjectKey(track.type, track.id);
     const tmpPath = resolve(TMP_DIR, r2Key.replace(/\//g, '_'));
 
     console.log(`[${downloaded + failed + 1}/${pending.length}] ${track.type}: ${track.title || track.id}`);

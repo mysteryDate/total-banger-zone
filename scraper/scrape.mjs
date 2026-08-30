@@ -9,6 +9,7 @@ import { hasSpotifyCredentials, getMostPopularAlbumTrack, getMostPopularPlaylist
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const STATE_PATH = resolve(__dirname, 'state.json');
+const BLOCKLIST_PATH = resolve(__dirname, 'blocklist.json');
 const TRACKS_PATH = resolve(__dirname, '..', 'tracks.json');
 
 const GUILD_ID = process.env.DISCORD_GUILD_ID;
@@ -25,6 +26,16 @@ async function loadState() {
 
 async function saveState(state) {
   await writeFile(STATE_PATH, JSON.stringify(state, null, 2) + '\n');
+}
+
+/** `type:id` keys that must never re-enter tracks.json, even on a full backfill */
+async function loadBlocklist() {
+  try {
+    const raw = await readFile(BLOCKLIST_PATH, 'utf-8');
+    return new Set(JSON.parse(raw));
+  } catch {
+    return new Set();
+  }
 }
 
 async function loadExistingTracks() {
@@ -50,6 +61,7 @@ async function main() {
 
   // Load state and existing tracks
   const state = await loadState();
+  const blocklist = await loadBlocklist();
   const existingTracks = await loadExistingTracks();
   const existingKeys = new Set(existingTracks.map((t) => `${t.type}:${t.id}`));
 
@@ -76,6 +88,7 @@ async function main() {
     for (const link of links) {
       const key = `${link.type}:${link.id}`;
       if (existingKeys.has(key)) continue; // skip duplicates
+      if (blocklist.has(key)) continue;
 
       // Fetch metadata (title, artist, thumbnail)
       const meta = await fetchMetadata(link.type, link.id, link.subtype, link.originalUrl);
@@ -145,8 +158,11 @@ async function main() {
     }
   }
 
+  // Resolution above can rewrite a track's id, so re-check the blocklist against the final key
+  const admittedTracks = newTracks.filter((t) => !blocklist.has(`${t.type}:${t.id}`));
+
   // Merge and sort (most recent first)
-  const allTracks = [...existingTracks, ...newTracks].sort(
+  const allTracks = [...existingTracks, ...admittedTracks].sort(
     (a, b) => new Date(b.postedAt) - new Date(a.postedAt)
   );
 
