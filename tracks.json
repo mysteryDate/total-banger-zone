@@ -1,6 +1,36 @@
 [
   {
     "type": "youtube",
+    "id": "uTDafjfxu5c",
+    "subtype": null,
+    "title": "David Guetta - When Love Takes Over (ft Kelly Rowland)",
+    "artist": "David Guetta",
+    "thumbnailUrl": "https://i.ytimg.com/vi/uTDafjfxu5c/hqdefault.jpg",
+    "embedUrl": null,
+    "streamUrl": null,
+    "audioUrl": null,
+    "user": "Ascetic Heat",
+    "postedAt": "2026-08-31T19:37:55.603000+00:00",
+    "messageId": "1544068742420504616",
+    "originalUrl": "https://youtu.be/uTDafjfxu5c?si=GWCd0h2DMEnXpgn5"
+  },
+  {
+    "type": "youtube",
+    "id": "BlMVB7DDzSc",
+    "subtype": null,
+    "title": "Kylie Minogue - Hold On To Now (Official Lyric Video)",
+    "artist": "Kylie Minogue",
+    "thumbnailUrl": "https://i.ytimg.com/vi/BlMVB7DDzSc/hqdefault.jpg",
+    "embedUrl": null,
+    "streamUrl": null,
+    "audioUrl": null,
+    "user": "Anatoli Smorin",
+    "postedAt": "2026-08-31T18:42:57.323000+00:00",
+    "messageId": "1544054908431507506",
+    "originalUrl": "https://youtu.be/BlMVB7DDzSc?si=l3QX8pGexZh9rY-o"
+  },
+  {
+    "type": "youtube",
     "id": "TMnns_iIB2M",
     "subtype": null,
     "title": "Tina Charles - I Love To Love (1976) • TopPop",
