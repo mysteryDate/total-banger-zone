@@ -1,5 +1,20 @@
 [
   {
+    "type": "spotify",
+    "id": "3bSk74kxpt19gLVNGs4Qrl",
+    "subtype": "track",
+    "title": "Videodisc",
+    "artist": null,
+    "thumbnailUrl": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02612749ad6f128097a966c21b",
+    "embedUrl": null,
+    "streamUrl": null,
+    "audioUrl": null,
+    "user": "Sleve McDichael",
+    "postedAt": "2026-09-02T20:20:38.668000+00:00",
+    "messageId": "1544804268425347212",
+    "originalUrl": "https://open.spotify.com/track/3bSk74kxpt19gLVNGs4Qrl?si=1e023032a5384961"
+  },
+  {
     "type": "youtube",
     "id": "9ro0FW9Qt-4",
     "subtype": null,
