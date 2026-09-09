@@ -1,5 +1,20 @@
 [
   {
+    "type": "bandcamp",
+    "id": "foragerrecords/spend-another-day",
+    "subtype": null,
+    "title": "Spend Another Day",
+    "artist": "Autumn Dust",
+    "thumbnailUrl": "https://f4.bcbits.com/img/a1050583536_5.jpg",
+    "embedUrl": "https://bandcamp.com/EmbeddedPlayer/v=2/track=1209815795/size=large/tracklist=false/artwork=small/",
+    "streamUrl": "https://t4.bcbits.com/stream/d897580ceb8fb8d65393ca93c6d1c5b4/mp3-128/1209815795?p=0&ts=1789074838&t=de3af57da0932a028fe70c8a4934696408555ee1&token=1789074838_c4eca3711c161ad6c6b286a08c64fcbb808d49a8",
+    "audioUrl": null,
+    "user": "Chim Chim (Gibbering)",
+    "postedAt": "2026-09-09T20:19:38.637000+00:00",
+    "messageId": "1547340731696549970",
+    "originalUrl": "https://foragerrecords.bandcamp.com/track/spend-another-day"
+  },
+  {
     "type": "youtube",
     "id": "JaY0GAibowY",
     "subtype": null,
