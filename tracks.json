@@ -1,5 +1,20 @@
 [
   {
+    "type": "youtube",
+    "id": "F4NmAdaQoD8",
+    "subtype": null,
+    "title": "Bauhaus - Double Dare",
+    "artist": "LifeO'Brien",
+    "thumbnailUrl": "https://i.ytimg.com/vi/F4NmAdaQoD8/hqdefault.jpg",
+    "embedUrl": null,
+    "streamUrl": null,
+    "audioUrl": null,
+    "user": "Hanno",
+    "postedAt": "2026-09-24T12:37:51.600000+00:00",
+    "messageId": "1552660337944297512",
+    "originalUrl": "https://youtu.be/F4NmAdaQoD8?si=1vYO0_KGB9Fl8QwC"
+  },
+  {
     "type": "bandcamp",
     "id": "colinstetson/even-though-the-frost-is-harsh",
     "subtype": null,
