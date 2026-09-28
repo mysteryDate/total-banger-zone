@@ -8,7 +8,7 @@
     "thumbnailUrl": "https://i.ytimg.com/vi/V4sjTD3HEUg/hqdefault.jpg",
     "embedUrl": null,
     "streamUrl": null,
-    "audioUrl": null,
+    "audioUrl": "https://audio.totalbangerzone.com/youtube/V4sjTD3HEUg.mp3",
     "user": "Dr Psyence",
     "postedAt": "2026-09-28T18:17:45.226000+00:00",
     "messageId": "1554195426473934850",
@@ -27,7 +27,8 @@
     "user": "inflatable tube man",
     "postedAt": "2026-09-28T16:37:05.802000+00:00",
     "messageId": "1554170095293436004",
-    "originalUrl": "https://www.youtube.com/watch?v=-lFzu74gtQo&list=RD-lFzu74gtQo&start_radio=1"
+    "originalUrl": "https://www.youtube.com/watch?v=-lFzu74gtQo&list=RD-lFzu74gtQo&start_radio=1",
+    "downloadError": "ERROR: unable to download video data: HTTP Error 403: Forbidden\n"
   },
   {
     "type": "youtube",
