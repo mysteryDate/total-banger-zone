@@ -1,6 +1,21 @@
 [
   {
     "type": "youtube",
+    "id": "38iyHpJtylg",
+    "subtype": null,
+    "title": "Yo La Tengo - \"Autumn Sweater\" (Official Audio)",
+    "artist": "Yo La Tengo",
+    "thumbnailUrl": "https://i.ytimg.com/vi/38iyHpJtylg/hqdefault.jpg",
+    "embedUrl": null,
+    "streamUrl": null,
+    "audioUrl": null,
+    "user": "Anatoli Smorin",
+    "postedAt": "2026-09-28T19:46:59.195000+00:00",
+    "messageId": "1554217882647404604",
+    "originalUrl": "https://youtu.be/38iyHpJtylg?si=IvO3gXwS5r753VOf"
+  },
+  {
+    "type": "youtube",
     "id": "V4sjTD3HEUg",
     "subtype": null,
     "title": "The Knife - Like a pen (album version)",
