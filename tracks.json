@@ -12,7 +12,8 @@
     "user": "Zeonard Koan",
     "postedAt": "2026-09-30T17:13:42.602000+00:00",
     "messageId": "1554904085071663214",
-    "originalUrl": "https://www.youtube.com/watch?v=r9R4X-Aws0o"
+    "originalUrl": "https://www.youtube.com/watch?v=r9R4X-Aws0o",
+    "downloadError": "ERROR: unable to download video data: HTTP Error 403: Forbidden\n"
   },
   {
     "type": "youtube",
