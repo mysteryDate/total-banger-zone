@@ -12,7 +12,8 @@
     "user": "Zeonard Koan",
     "postedAt": "2026-10-16T15:05:27.957000+00:00",
     "messageId": "1560670017240957070",
-    "originalUrl": "https://www.youtube.com/watch?v=06Eovjy_G3k"
+    "originalUrl": "https://www.youtube.com/watch?v=06Eovjy_G3k",
+    "downloadError": "ERROR: unable to download video data: HTTP Error 403: Forbidden\n"
   },
   {
     "type": "youtube",
@@ -27,7 +28,8 @@
     "user": "profiled! by the yeast police",
     "postedAt": "2026-10-16T14:35:00.287000+00:00",
     "messageId": "1560662351437504622",
-    "originalUrl": "https://youtu.be/RVx3q60RS88?si=sldO5Yubr1aSRT-C"
+    "originalUrl": "https://youtu.be/RVx3q60RS88?si=sldO5Yubr1aSRT-C",
+    "downloadError": "ERROR: unable to download video data: HTTP Error 403: Forbidden\n"
   },
   {
     "type": "youtube",
@@ -38,7 +40,7 @@
     "thumbnailUrl": "https://i.ytimg.com/vi/qQgXXYLsSpQ/hqdefault.jpg",
     "embedUrl": null,
     "streamUrl": null,
-    "audioUrl": null,
+    "audioUrl": "https://audio.totalbangerzone.com/youtube/qQgXXYLsSpQ.mp3",
     "user": "christicular torsion",
     "postedAt": "2026-10-16T14:22:51.631000+00:00",
     "messageId": "1560659295232729140",
