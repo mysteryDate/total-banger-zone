@@ -12,7 +12,8 @@
     "user": "profiled! by the yeast police",
     "postedAt": "2026-11-03T19:41:44.017000+00:00",
     "messageId": "1567262523856527533",
-    "originalUrl": "https://youtu.be/wNP_UwURxLY?si=E1_20u_7B1LvZAYx"
+    "originalUrl": "https://youtu.be/wNP_UwURxLY?si=E1_20u_7B1LvZAYx",
+    "downloadError": "Command failed: yt-dlp -x --audio-format mp3 --audio-quality 192k -o C:\\Users\\kraje\\src\\personal\\total-banger-zone\\tmp-audio\\youtube_wNP_UwURxLY.mp3 --no-playlist --no-warnings https://youtu.be/wNP_UwURxLY?si=E1_20u_7B1LvZAYx\n"
   },
   {
     "type": "youtube",
