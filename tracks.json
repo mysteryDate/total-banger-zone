@@ -1,5 +1,20 @@
 [
   {
+    "type": "youtube",
+    "id": "0Yx-E-xG4kU",
+    "subtype": null,
+    "title": "Madonna - Devil Pray (Official Audio)",
+    "artist": "Madonna",
+    "thumbnailUrl": "https://i.ytimg.com/vi/0Yx-E-xG4kU/hqdefault.jpg",
+    "embedUrl": null,
+    "streamUrl": null,
+    "audioUrl": null,
+    "user": "Lucky Remus",
+    "postedAt": "2026-11-06T16:30:11.468000+00:00",
+    "messageId": "1568301484209078363",
+    "originalUrl": "https://www.youtube.com/watch?v=0Yx-E-xG4kU&list=RD0Yx-E-xG4kU&start_radio=1"
+  },
+  {
     "type": "bandcamp",
     "id": "duffthompson/fog-ii",
     "subtype": null,
