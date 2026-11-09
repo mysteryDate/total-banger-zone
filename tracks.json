@@ -1,5 +1,20 @@
 [
   {
+    "type": "spotify",
+    "id": "4XCGfHpGVq8xw800o5cwWs",
+    "subtype": "track",
+    "title": "Les Fleurs",
+    "artist": null,
+    "thumbnailUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02d85c957794c2a5b8b11de5f9",
+    "embedUrl": null,
+    "streamUrl": null,
+    "audioUrl": null,
+    "user": "profiled! by the yeast police",
+    "postedAt": "2026-11-09T18:30:35.690000+00:00",
+    "messageId": "1569418948389371986",
+    "originalUrl": "https://open.spotify.com/track/4XCGfHpGVq8xw800o5cwWs?si=tW9_Hy0vTGqLRQQwKeUnRQ&utm_source=copy-link"
+  },
+  {
     "type": "youtube",
     "id": "WQa1P2dp94c",
     "subtype": null,
