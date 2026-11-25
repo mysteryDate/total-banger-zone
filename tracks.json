@@ -1,6 +1,36 @@
 [
   {
     "type": "youtube",
+    "id": "UYl7thzXiVY",
+    "subtype": null,
+    "title": "The Shredder- I Hate Music",
+    "artist": "Justin “Jay” Konst",
+    "thumbnailUrl": "https://i.ytimg.com/vi/UYl7thzXiVY/hqdefault.jpg",
+    "embedUrl": null,
+    "streamUrl": null,
+    "audioUrl": null,
+    "user": "GERB BIRD",
+    "postedAt": "2026-11-25T18:02:25.725000+00:00",
+    "messageId": "1575210066012012554",
+    "originalUrl": "https://youtu.be/UYl7thzXiVY?si=-bpfqOlCvk1ZDkim"
+  },
+  {
+    "type": "youtube",
+    "id": "Zbqo2R5v8Fs",
+    "subtype": null,
+    "title": "Parapet",
+    "artist": "@ - Topic",
+    "thumbnailUrl": "https://i.ytimg.com/vi/Zbqo2R5v8Fs/hqdefault.jpg",
+    "embedUrl": null,
+    "streamUrl": null,
+    "audioUrl": null,
+    "user": "the real jason funderburker",
+    "postedAt": "2026-11-25T13:29:32.825000+00:00",
+    "messageId": "1575141393091797104",
+    "originalUrl": "https://m.youtube.com/watch?v=Zbqo2R5v8Fs&list=OLAK5uy_n27mFnbDWWQK8wKoBDu-3kWk90dmvnwEU&pp=ygURbWluZCBwYWxhY2UgbXVzaWM%3D&ra=m"
+  },
+  {
+    "type": "youtube",
     "id": "9WgKubW5Z0o",
     "subtype": null,
     "title": "Fergie - London Bridge (oh shit)  HQ",
