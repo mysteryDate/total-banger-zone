@@ -23,7 +23,7 @@
     "thumbnailUrl": "https://i.ytimg.com/vi/UYl7thzXiVY/hqdefault.jpg",
     "embedUrl": null,
     "streamUrl": null,
-    "audioUrl": null,
+    "audioUrl": "https://audio.totalbangerzone.com/youtube/UYl7thzXiVY.mp3",
     "user": "GERB BIRD",
     "postedAt": "2026-11-25T18:02:25.725000+00:00",
     "messageId": "1575210066012012554",
@@ -42,7 +42,8 @@
     "user": "the real jason funderburker",
     "postedAt": "2026-11-25T13:29:32.825000+00:00",
     "messageId": "1575141393091797104",
-    "originalUrl": "https://m.youtube.com/watch?v=Zbqo2R5v8Fs&list=OLAK5uy_n27mFnbDWWQK8wKoBDu-3kWk90dmvnwEU&pp=ygURbWluZCBwYWxhY2UgbXVzaWM%3D&ra=m"
+    "originalUrl": "https://m.youtube.com/watch?v=Zbqo2R5v8Fs&list=OLAK5uy_n27mFnbDWWQK8wKoBDu-3kWk90dmvnwEU&pp=ygURbWluZCBwYWxhY2UgbXVzaWM%3D&ra=m",
+    "downloadError": "ERROR: [youtube] Zbqo2R5v8Fs: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 11001] getaddrinfo failed) (caused by TransportError(\"HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 11001] getaddrinfo failed)\"))\n"
   },
   {
     "type": "youtube",
