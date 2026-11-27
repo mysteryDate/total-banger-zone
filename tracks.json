@@ -1,5 +1,20 @@
 [
   {
+    "type": "bandcamp",
+    "id": "modheaven/lost-and-found-alt-mix",
+    "subtype": null,
+    "title": "Lost and Found (Alt Mix)",
+    "artist": "modheaven",
+    "thumbnailUrl": "https://f4.bcbits.com/img/a1564063726_5.jpg",
+    "embedUrl": "https://bandcamp.com/EmbeddedPlayer/v=2/track=1662888019/size=large/tracklist=false/artwork=small/",
+    "streamUrl": "https://t4.bcbits.com/stream/60a9125f7cd21d102257e878b1225666/mp3-128/1662888019?p=0&ts=1795905614&t=0d934428d01136632079e176b7e9c9a2aa081de8&token=1795905614_a9a1ffe4da55ceaf20bdaac248ad55b2504abe05",
+    "audioUrl": null,
+    "user": "christicular torsion",
+    "postedAt": "2026-11-27T16:01:40.905000+00:00",
+    "messageId": "1575904454765445181",
+    "originalUrl": "https://modheaven.bandcamp.com/track/lost-and-found-alt-mix"
+  },
+  {
     "type": "youtube",
     "id": "UYl7thzXiVY",
     "subtype": null,
